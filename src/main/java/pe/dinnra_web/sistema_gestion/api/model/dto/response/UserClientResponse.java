@@ -13,4 +13,6 @@ public class UserClientResponse {
 
     private String password;
 
+    private Boolean active;
+
 }

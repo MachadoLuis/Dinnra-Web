@@ -40,6 +40,7 @@ public class Employee {
     private String surnames;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "employee_gender")
     private Gender gender;
 
     @Column(name = "employee_birth_date")

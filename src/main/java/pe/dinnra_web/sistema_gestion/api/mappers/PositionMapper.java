@@ -9,11 +9,9 @@ import pe.dinnra_web.sistema_gestion.api.model.entity.Position;
 @Mapper(componentModel = "spring")
 public interface PositionMapper {
 
-    PositionResponse toPositionResponse(Position entity);
-
     @Mapping(target = "idPosition", ignore = true)
-    @Mapping(target = "name", source = "name")
-    @Mapping(target = "description", source = "description")
     Position toPosition(PositionRequest request);
+
+    PositionResponse toPositionResponse(Position entity);
 
 }

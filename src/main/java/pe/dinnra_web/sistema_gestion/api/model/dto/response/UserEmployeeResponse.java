@@ -12,4 +12,7 @@ public class UserEmployeeResponse {
     private String username;
 
     private String password;
+
+    private Boolean active;
+
 }

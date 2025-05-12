@@ -1,0 +1,22 @@
+package pe.dinnra_web.sistema_gestion.api.service;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import pe.dinnra_web.sistema_gestion.api.model.dto.request.EmployeeRequest;
+import pe.dinnra_web.sistema_gestion.api.model.dto.response.EmployeeDetailResponse;
+import pe.dinnra_web.sistema_gestion.api.model.dto.response.EmployeeResponse;
+
+public interface EmployeeService {
+
+    EmployeeDetailResponse create (EmployeeRequest request);
+
+    EmployeeDetailResponse findById (Long idEmployee);
+
+    Page<EmployeeResponse> findAll (Pageable pageable);
+
+    EmployeeDetailResponse update (Long idEmployee, EmployeeRequest request);
+
+    void deleteById(Long idEmployee);
+
+
+}

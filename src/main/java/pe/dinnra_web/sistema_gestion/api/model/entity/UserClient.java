@@ -30,4 +30,7 @@ public class UserClient {
     @Column(name = "user_client_password")
     private String password;
 
+    @Column(columnDefinition = "boolean default true")
+    private Boolean active;
+
 }
