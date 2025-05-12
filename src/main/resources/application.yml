@@ -7,9 +7,9 @@ spring:
     time-zone: America/Lima
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/dinnra_web_db?createDatabaseIfNotExist=true
-    username: root
-    password: Machado28!
+    url: jdbc:mysql://${MYSQL_SERVER}/dinnra_web_db?createDatabaseIfNotExist=true
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
 
   jpa:
     open-in-view: false
