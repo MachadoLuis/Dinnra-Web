@@ -33,4 +33,7 @@ public class UserEmployee {
     @Column(name = "user_employee_password")
     private String password;
 
+    @Column(columnDefinition = "boolean default true")
+    private Boolean active;
+
 }

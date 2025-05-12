@@ -25,7 +25,7 @@ public class EmployeeRequest {
     @NotBlank(message = "Los apellidos no pueden estar vacios")
     private String surnames;
 
-    @NotBlank(message = "El genero es requerido")
+    @NotNull(message = "El genero es requerido")
     private Gender gender;
 
     @NotNull(message = "El año de nacimiento es requerido")

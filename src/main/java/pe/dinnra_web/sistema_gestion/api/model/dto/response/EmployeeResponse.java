@@ -3,6 +3,8 @@ package pe.dinnra_web.sistema_gestion.api.model.dto.response;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDate;
+
 @Getter
 @Builder
 public class EmployeeResponse {
@@ -11,7 +13,9 @@ public class EmployeeResponse {
 
     private String positionName;
 
-    private String usernames;
+    private String surnames;
+
+    private LocalDate birthDate;
 
     private String email;
 
