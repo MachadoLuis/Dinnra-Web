@@ -7,7 +7,11 @@ import lombok.Getter;
 @Builder
 public class UserEmployeeResponse {
 
-    private Long idClient;
+    private Long idEmployee;
+
+    private String positionName;
+
+    private String surnames;
 
     private String username;
 

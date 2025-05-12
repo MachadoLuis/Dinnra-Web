@@ -25,4 +25,7 @@ public class UserClientRequest {
             message = "La contraseña debe tener al menos 8 caracteres, una letra y un número")
     private String password;
 
+    @NotNull(message = "El estado es requerido")
+    private Boolean active;
+
 }
