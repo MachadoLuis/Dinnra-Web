@@ -30,7 +30,7 @@ public class Room {
     private String name;
 
     @Column(name = "room_amenities", columnDefinition = "TEXT")
-    private String amenity;
+    private String amenities;
 
     @Column(name = "room_description", columnDefinition = "TEXT" )
     private String description;
@@ -39,7 +39,7 @@ public class Room {
     private Integer capacity;
 
     @Column(name = "room_price_per_night", nullable = false, precision = 8, scale = 2)
-    private BigDecimal priceNight;
+    private BigDecimal pricePerNight;
 
     @Enumerated(EnumType.STRING)
     private RoomStatus roomStatus;
