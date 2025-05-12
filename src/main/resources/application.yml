@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: api-dinnra-web
+  jackson:
+    default-property-inclusion: non_null
+    property-naming-strategy: SNAKE_CASE
+    time-zone: America/Lima
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dinnra_web_db?createDatabaseIfNotExist=true
+    username: root
+    password: Machado28!
+
+  jpa:
+    open-in-view: false
+
+  logging:
+    pattern:
+      dateformat: yyyy/MM/dd hh:mm:ss a
+
+  springdoc:
+    api-docs:
+      enabled: true
+    swagger-ui:
+      path: /swagger-ui.html
+
+  app:
+    domain: hhtp://localhost:8080
