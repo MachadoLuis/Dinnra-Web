@@ -16,13 +16,13 @@ import pe.dinnra_web.sistema_gestion.api.service.impl.EmployeeServiceImpl;
 
 @Tag(name = "employees", description = "API para gestion de empleados")
 @RestController
-@RequestMapping("/api/v1/employee")
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/employee")
 public class EmployeeController {
 
     private final EmployeeServiceImpl employeeService;
 
-    @Operation(description = "Creacion de empleado")
+    @Operation(summary = "Creacion de empleado")
     @PostMapping
     private ResponseEntity<EmployeeDetailResponse> create (
             @Valid @RequestBody EmployeeRequest request){
@@ -31,25 +31,25 @@ public class EmployeeController {
                 .body(employeeService.create(request));
     };
 
-    @Operation(description = "Obtener un empleado por su id")
+    @Operation(summary = "Obtener un empleado por su ID")
     @GetMapping("/{idEmployee}")
     private ResponseEntity<EmployeeDetailResponse> findById(@PathVariable Long idEmployee){
         return ResponseEntity.ok(employeeService.findById(idEmployee));
     }
 
-    @Operation(description = "Obtener todos los empleados de forma paginada")
+    @Operation(summary = "Obtener todos los empleados de forma paginada")
     @GetMapping
     private ResponseEntity<Page<EmployeeResponse>> findAll(Pageable pageable){
         return ResponseEntity.ok(employeeService.findAll(pageable));
     }
 
-    @Operation(description = "Actualizar un empleado")
+    @Operation(summary = "Actualizar un empleado")
     @PutMapping("/{idEmployee}")
     private ResponseEntity<EmployeeDetailResponse> update(Long idEmployee, EmployeeRequest request){
         return ResponseEntity.ok(employeeService.update(idEmployee,request));
     }
 
-    @Operation(description = "Eliminar un empleado por su id")
+    @Operation(summary = "Eliminar un empleado por su ID")
     @DeleteMapping("/{idEmployee}")
     private ResponseEntity<Void> deleteById(Long idEmployee){
         employeeService.deleteById(idEmployee);

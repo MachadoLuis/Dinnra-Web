@@ -15,8 +15,8 @@ import pe.dinnra_web.sistema_gestion.api.service.impl.PositionServiceImpl;
 
 @Tag(name = "Positions", description = "API para gestion de posiciones")
 @RestController
-@RequestMapping("/api/v1/position")
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/position")
 
 public class PositionController {
 
@@ -44,4 +44,5 @@ public class PositionController {
     private ResponseEntity<Page<PositionResponse>> findAll(Pageable pageable){
         return ResponseEntity.ok(positionService.findAll(pageable));
     }
+
 }
