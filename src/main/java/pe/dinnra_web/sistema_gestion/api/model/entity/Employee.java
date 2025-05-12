@@ -48,4 +48,7 @@ public class Employee {
     @Column(name = "employee_email")
     private String email;
 
+    @Column(columnDefinition = "boolean default true")
+    private Boolean active = true;
+
 }
