@@ -14,8 +14,8 @@ import pe.dinnra_web.sistema_gestion.api.repository.PositionRepository;
 import pe.dinnra_web.sistema_gestion.api.service.PositionService;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
+@RequiredArgsConstructor
 public class PositionServiceImpl implements PositionService {
 
     private final PositionRepository positionRepository;
@@ -33,7 +33,7 @@ public class PositionServiceImpl implements PositionService {
     public PositionResponse findById(Long idPosition) {
         return positionRepository.findById(idPosition)
                 .map(positionMapper::toPositionResponse)
-                .orElseThrow(() -> new PositionNotFoundException("Posicion no encontrada"));
+                .orElseThrow(() -> new PositionNotFoundException("Posicion no encontrada con ID: " + idPosition));
     }
 
     @Override
@@ -42,5 +42,4 @@ public class PositionServiceImpl implements PositionService {
         return positionRepository.findAll(pageable)
                 .map(positionMapper::toPositionResponse);
     }
-
 }

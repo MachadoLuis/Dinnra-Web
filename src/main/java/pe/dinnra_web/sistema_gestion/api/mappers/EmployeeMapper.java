@@ -15,7 +15,6 @@ public interface EmployeeMapper {
     @Mapping(target = "position.idPosition", source = "idPosition")
     Employee toEmployee (EmployeeRequest request);
 
-    @Mapping(target = "idPosition", source = "position.idPosition")
     @Mapping(target = "positionName", source = "position.name")
     EmployeeDetailResponse toEmployeeDetailResponse (Employee employee);
 
@@ -23,5 +22,7 @@ public interface EmployeeMapper {
     EmployeeResponse toEmployeeResponse(Employee employee);
 
     @Mapping(target = "idEmployee", ignore = true)
-    void update(@MappingTarget Employee entity, EmployeeRequest request );
+    @Mapping(target = "position.idPosition", source = "idPosition")
+    void update(@MappingTarget Employee entity, EmployeeRequest request);
+
 }

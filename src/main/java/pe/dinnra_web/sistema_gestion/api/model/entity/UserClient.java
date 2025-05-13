@@ -27,6 +27,9 @@ public class UserClient {
     @JoinColumn(name = "id_client")
     private Client client;
 
+    @Column(name = "user_client_username")
+    private String username;
+
     @Column(name = "user_client_password")
     private String password;
 

@@ -15,6 +15,7 @@ import pe.dinnra_web.sistema_gestion.api.repository.EmployeeRepository;
 import pe.dinnra_web.sistema_gestion.api.service.EmployeeService;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -30,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional(readOnly = true)
-    public EmployeeDetailResponse findById(Long idEmployee) {
+    public EmployeeDetailResponse findById (Long idEmployee) {
         return employeeRepository.findById(idEmployee)
                 .map(employeeMapper::toEmployeeDetailResponse)
                 .orElseThrow(() -> new EmployeeNotFoundException("Empleado no encontrado con ID: " + idEmployee));
@@ -38,13 +39,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<EmployeeResponse> findAll(Pageable pageable) {
+    public Page<EmployeeResponse> findAll (Pageable pageable) {
         return employeeRepository.findAll(pageable)
                 .map(employeeMapper::toEmployeeResponse);
     }
 
     @Override
-    public EmployeeDetailResponse update(Long idEmployee, EmployeeRequest request) {
+    public EmployeeDetailResponse update (Long idEmployee, EmployeeRequest request) {
         if (!employeeRepository.existsById(idEmployee)){
             throw new EmployeeNotFoundException("Empleado no encontrado con ID: " + idEmployee);
         }
@@ -56,11 +57,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteById(Long idEmployee) {
+    public void deleteById (Long idEmployee) {
         if (!employeeRepository.existsById(idEmployee)){
             throw new EmployeeNotFoundException("Empleado no encontrado con ID: " + idEmployee);
         }
-            employeeRepository.deleteById(idEmployee);
+        employeeRepository.deleteById(idEmployee);
     }
-
 }

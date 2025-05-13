@@ -17,7 +17,6 @@ import pe.dinnra_web.sistema_gestion.api.service.impl.PositionServiceImpl;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/position")
-
 public class PositionController {
 
     private final PositionServiceImpl positionService;
