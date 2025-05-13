@@ -3,6 +3,7 @@ package pe.dinnra_web.sistema_gestion.api.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pe.dinnra_web.sistema_gestion.api.exceptions.UserClientNotFoundException;
@@ -19,10 +20,12 @@ import pe.dinnra_web.sistema_gestion.api.service.UserClientService;
 public class UserClientServiceImpl implements UserClientService {
     private final UserClientRepository userClientRepository;
     private final UserClientMapper userClientMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserClientResponse create(UserClientRequest request) {
         UserClient userClient = userClientMapper.toUserClient(request);
+        userClient.setPassword(passwordEncoder.encode(request.getPassword()));
         UserClient saveUserClient = userClientRepository.save(userClient);
         return userClientMapper.toUserClientResponse(saveUserClient);
     }

@@ -3,6 +3,7 @@ package pe.dinnra_web.sistema_gestion.api.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pe.dinnra_web.sistema_gestion.api.exceptions.UserEmployeeNotFoundException;
@@ -19,10 +20,12 @@ import pe.dinnra_web.sistema_gestion.api.service.UserEmployeeService;
 public class UserEmployeeServiceImpl implements UserEmployeeService {
     private final UserEmployeeRepository userEmployeeRepository;
     private final UserEmployeeMapper userEmployeeMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserEmployeeResponse create(UserEmployeeRequest request) {
         UserEmployee userEmployee = userEmployeeMapper.toUserEmployee(request);
+        userEmployee.setPassword(passwordEncoder.encode(request.getPassword()));
         UserEmployee savedUserEmployee = userEmployeeRepository.save(userEmployee);
         return userEmployeeMapper.toUserEmployeeResponse(savedUserEmployee);
     }

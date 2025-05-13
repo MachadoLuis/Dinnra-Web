@@ -14,6 +14,7 @@ public interface UserEmployeeMapper {
     UserEmployee toUserEmployee (UserEmployeeRequest request);
 
     @Mapping(target = "idEmployee", source = "employee.idEmployee")
+    @Mapping(target = "idUserEmployee", source = "idUserEmployee")
     @Mapping(target = "positionName", source = "employee.position.name")
     @Mapping(target = "surnames", source = "employee.surnames")
     UserEmployeeResponse toUserEmployeeResponse (UserEmployee userEmployee);
