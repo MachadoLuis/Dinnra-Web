@@ -33,25 +33,26 @@ public class EmployeeController {
 
     @Operation(summary = "Obtener un empleado por su ID")
     @GetMapping("/{idEmployee}")
-    private ResponseEntity<EmployeeDetailResponse> findById(@PathVariable Long idEmployee){
+    private ResponseEntity<EmployeeDetailResponse> findById (@PathVariable Long idEmployee){
         return ResponseEntity.ok(employeeService.findById(idEmployee));
     }
 
     @Operation(summary = "Obtener todos los empleados de forma paginada")
     @GetMapping
-    private ResponseEntity<Page<EmployeeResponse>> findAll(Pageable pageable){
+    private ResponseEntity<Page<EmployeeResponse>> findAll (Pageable pageable){
         return ResponseEntity.ok(employeeService.findAll(pageable));
     }
 
     @Operation(summary = "Actualizar un empleado")
     @PutMapping("/{idEmployee}")
-    private ResponseEntity<EmployeeDetailResponse> update(Long idEmployee, EmployeeRequest request){
+    private ResponseEntity<EmployeeDetailResponse> update (
+            @PathVariable Long idEmployee, @Valid @RequestBody EmployeeRequest request){
         return ResponseEntity.ok(employeeService.update(idEmployee,request));
     }
 
     @Operation(summary = "Eliminar un empleado por su ID")
     @DeleteMapping("/{idEmployee}")
-    private ResponseEntity<Void> deleteById(Long idEmployee){
+    private ResponseEntity<Void> deleteById (@PathVariable Long idEmployee){
         employeeService.deleteById(idEmployee);
         return ResponseEntity.noContent().build();
     }

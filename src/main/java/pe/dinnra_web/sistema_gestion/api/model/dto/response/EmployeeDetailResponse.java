@@ -12,8 +12,6 @@ public class EmployeeDetailResponse {
 
     private Long idEmployee;
 
-    private Long idPosition;
-
     private String positionName;
 
     private String names;

@@ -32,7 +32,7 @@ public class UserEmployeeServiceImpl implements UserEmployeeService {
     public UserEmployeeResponse findById(Long idUserEmployee) {
         return userEmployeeRepository.findById(idUserEmployee)
                 .map(userEmployeeMapper::toUserEmployeeResponse)
-                .orElseThrow(() -> new UserEmployeeNotFoundException("Usuario de empleado no encontrado con ID:" + idUserEmployee));
+                .orElseThrow(() -> new UserEmployeeNotFoundException("Usuario de empleado no encontrado con ID: " + idUserEmployee));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class UserEmployeeServiceImpl implements UserEmployeeService {
     @Override
     public void deleteById(Long idUserEmployee) {
         if (!userEmployeeRepository.existsById(idUserEmployee)){
-            throw new UserEmployeeNotFoundException("Usuario de empleado no encontrado con ID:" + idUserEmployee);
+            throw new UserEmployeeNotFoundException("Usuario de empleado no encontrado con ID: " + idUserEmployee);
         }
         userEmployeeRepository.deleteById(idUserEmployee);
     }

@@ -9,6 +9,8 @@ public class UserClientResponse {
 
     private Long idClient;
 
+    private String surnames;
+
     private String username;
 
     private String password;
