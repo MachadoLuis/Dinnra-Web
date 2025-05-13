@@ -15,6 +15,7 @@ public interface UserClientMapper {
     UserClient toUserClient (UserClientRequest request);
 
     @Mapping(target = "idClient", source = "client.idClient")
+    @Mapping(target = "idUserClient", source = "idUserClient")
     @Mapping(target = "surnames", source = "client.surnames")
     UserClientResponse toUserClientResponse (UserClient userClient);
 

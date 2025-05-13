@@ -9,6 +9,8 @@ public class UserEmployeeResponse {
 
     private Long idEmployee;
 
+    private Long idUserEmployee;
+
     private String positionName;
 
     private String surnames;

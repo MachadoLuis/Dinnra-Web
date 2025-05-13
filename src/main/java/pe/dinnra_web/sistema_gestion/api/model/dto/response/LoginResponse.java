@@ -1,22 +1,20 @@
 package pe.dinnra_web.sistema_gestion.api.model.dto.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 @Builder
-public class UserClientResponse {
-
-    private Long idClient;
-
-    private Long idUserClient;
-
-    private String surnames;
+@AllArgsConstructor
+public class LoginResponse {
 
     private String username;
 
     private String password;
 
-    private Boolean active;
+    private String position;
+
+    private String token;
 
 }
