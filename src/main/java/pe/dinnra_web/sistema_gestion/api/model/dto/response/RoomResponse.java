@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 @Builder
 public class RoomResponse {
 
+    private Long idRoom;
+
     private String name;
 
     private Integer capacity;

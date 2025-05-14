@@ -35,7 +35,7 @@ public class Room {
     @Column(name = "room_description", columnDefinition = "TEXT" )
     private String description;
 
-    @Column(name  = "room_capactiy")
+    @Column(name  = "room_capacity")
     private Integer capacity;
 
     @Column(name = "room_price_per_night", nullable = false, precision = 8, scale = 2)

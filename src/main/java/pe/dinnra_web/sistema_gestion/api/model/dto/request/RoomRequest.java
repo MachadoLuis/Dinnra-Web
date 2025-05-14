@@ -26,11 +26,12 @@ public class RoomRequest {
     private String description;
 
     @NotNull(message = "La cantidad de personas maxima del cuarto es necesaria")
-    private Integer capacity;
+    private int capacity;
 
     @NotNull(message = "El precio por noche del cuarto es necesario")
     private BigDecimal pricePerNight;
 
+    @NotNull(message = "El estado del cuarto es necesario")
     @Enumerated(EnumType.STRING)
     private RoomStatus roomStatus;
 
