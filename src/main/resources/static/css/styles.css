@@ -1,0 +1,105 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+}
+header {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+}
+#banner-principal {
+    background-color: #f8f9fa;
+    padding: 3rem 0;
+}
+
+#banner-principal h2 {
+    font-size: 2rem;
+    color: #333;
+}
+
+#beneficios .card {
+    border: none;
+}
+
+.input-group-text {
+    background-color: #f8f9fa;
+    border-right: none;
+}
+
+.dropdown-menu {
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item i {
+    margin-right: 8px;
+    color: #007bff;
+}
+
+#ofertas-hoteles .card img {
+    height: 180px;
+    object-fit: cover;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card .btn:hover {
+    background-color: #0056b3; /* Cambia el color del botón al pasar el mouse */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-body p {
+    margin-bottom: 0.5rem;
+}
+
+.badge {
+    font-size: 0.9rem;
+    padding: 0.4em 0.6em;
+}
+
+.text-muted {
+    font-size: 0.9rem;
+}
+
+.text-success {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.nav-tabs .nav-link.active {
+    font-weight: bold;
+    border-color: #007bff #007bff #fff;
+}
+
+footer {
+    background-color: #f8f9fa;
+}
+
+footer h5 {
+    color: #333;
+}
+
+footer a:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+footer a {
+    color: #adb5bd;
+    text-decoration: none;
+}
+

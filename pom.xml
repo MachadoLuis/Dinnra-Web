@@ -124,6 +124,7 @@
 			<version>5.3.0</version>
 		</dependency>
 
+		<!-- Dependencia para manejar JavaWebToken, manejar un login con un token -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
@@ -144,9 +145,16 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- Dependencia para trabajar con PasswordEncoder -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-crypto</artifactId>
+		</dependency>
+
+		<!-- Dependencia para trabajar con thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
 	</dependencies>
