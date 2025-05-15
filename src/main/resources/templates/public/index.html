@@ -97,7 +97,7 @@
     <div class="container d-flex flex-column align-items-center justify-content-center text-center" style="min-height: 300px;">
         <h2 class="fw-bold">Disfruta de los descuentos de usar Dinnra al reservar un hotel</h2>
         <p class="text-muted">Con hoteles alrededor de todo el mundo!</p>
-        <form class="row g-2 justify-content-center mt-4">
+        <form class="row g-2 justify-content-center mt-4" th:action="@{/usuario/usuario_reservar_habitacion}" method="get">
             <!-- Lugar de interés -->
             <div class="col-md-3 position-relative">
                 <div class="input-group">
