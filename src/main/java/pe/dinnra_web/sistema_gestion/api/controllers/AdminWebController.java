@@ -16,6 +16,6 @@ public class AdminWebController {
     @GetMapping("/crea_habitacion")
     public String creare_habitacion(){return "admin/crear_habitacion";}
     @GetMapping("/crea_posicion")
-    public String creare_posicion(){return "admin/crea_posicion";}
+    public String creare_posicion(){return "admin/crear_posicion";}
 
 }
