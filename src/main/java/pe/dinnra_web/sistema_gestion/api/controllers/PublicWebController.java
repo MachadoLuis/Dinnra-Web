@@ -13,7 +13,7 @@ public class PublicWebController {
      * PARA PODER COMPROBAR SI FUNCIONA TIENEN QUE ENTRAR A http://localhost:8080/public/index */
     @GetMapping("/index")
     public String indexPrueba(){
-        return "indexPrueba";
+        return "public/index";
     }
 
     /* SI TUVIERAN UN HTML LLAMADO PRUEBA EN EL MISMO NIVEL QUE HTML TENDRIAN QUE HACER ESTO */
