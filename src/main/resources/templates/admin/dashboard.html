@@ -79,16 +79,16 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading bg-primary text-white">Dashboard</div>
         <div class="list-group list-group-flush">
-            <a href="crear_empleado.html" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
+            <a th:href="@{/admin/crea_empleado}" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
                 <i class="bi bi-person-plus-fill menu-icon"></i>Crear Empleado
             </a>
-            <a href="crear_cliente.html" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
+            <a th:href="@{/admin/crea_cliente}" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
                 <i class="bi bi-people-fill menu-icon"></i>Crear Cliente
             </a>
-            <a href="crear_habitacion.html" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
+            <a th:href="@{/admin/crea_habitacion}" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
                 <i class="bi bi-door-open-fill menu-icon"></i>Crear Habitación
             </a>
-            <a href="crear_posicion.html" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
+            <a th:href="@{/admin/crea_posicion}" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
                 <i class="bi bi-briefcase-fill menu-icon"></i>Crear Posición
             </a>
             <!-- Aquí puedes agregar más opciones de menú en el futuro -->
