@@ -17,9 +17,9 @@ public class PublicWebController {
     }
 
     /* SI TUVIERAN UN HTML LLAMADO PRUEBA EN EL MISMO NIVEL QUE HTML TENDRIAN QUE HACER ESTO */
-    @GetMapping("/PRUEBA")
-    public String prueba(){
-        return "prueba";
+    @GetMapping("/contacto")
+    public String contacto(){
+        return "public/contacto";
     }
 
     /* SI TUVIERAN UN HTML UN NIVEL DENTRO SE VERIA ASI */
