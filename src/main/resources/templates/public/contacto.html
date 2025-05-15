@@ -14,7 +14,7 @@
 <header class="container-fluid border-bottom py-2">
     <div class="container d-flex justify-content-between align-items-center">
         <div>
-            <a href="../public/index.html" class="text-decoration-none">
+            <a th:href="@{/public/index}"class="text-decoration-none">
                 <h2 class="mb-0 text-primary">Dinnra</h2>
             </a>
         </div>
@@ -68,9 +68,9 @@
                 <ul class="list-unstyled">
                     <li><a href="#" class="text-decoration-none text-muted">Acerca de nosotros</a></li>
                     <li><a href="#" class="text-decoration-none text-muted">Política de privacidad</a></li>
-                    <li><a href="../usuario/libro_reclamaciones.html" class="text-decoration-none text-muted">Libro de reclamaciones</a></li>
+                    <li><a th:href="@{/usuario/usuario_libro_reclamaciones}" class="text-decoration-none text-muted">Libro de reclamaciones</a></li>
                     <li><a href="#" class="text-decoration-none text-muted">Términos y condiciones</a></li>
-                    <li><a href="../public/contacto.html" class="text-decoration-none text-muted">Contáctanos</a></li>
+                    <li<a th:href="@{/public/contacto}" class="text-decoration-none text-muted">Contáctanos</a></li>
                 </ul>
             </div>
             <div class="col-md-4">
