@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Habitación</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css">
+</head>
+<body class="bg-light">
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="bi bi-door-open-fill me-2"></i>Crear Nueva Habitación</h4>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="numeroHabitacion" class="form-label">Número de Habitación</label>
+                                <input type="text" class="form-control" id="numeroHabitacion" placeholder="Ej: 101">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="piso" class="form-label">Piso</label>
+                                <select class="form-select" id="piso">
+                                    <option selected disabled>Seleccione un piso</option>
+                                    <option value="1">Planta Baja</option>
+                                    <option value="2">Primer Piso</option>
+                                    <option value="3">Segundo Piso</option>
+                                    <option value="4">Tercer Piso</option>
+                                    <option value="5">Cuarto Piso</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="tipoHabitacion" class="form-label">Tipo de Habitación</label>
+                                <select class="form-select" id="tipoHabitacion">
+                                    <option selected disabled>Seleccione tipo</option>
+                                    <option value="individual">Individual</option>
+                                    <option value="doble">Doble</option>
+                                    <option value="twin">Twin</option>
+                                    <option value="triple">Triple</option>
+                                    <option value="suite">Suite</option>
+                                    <option value="suitejr">Suite Junior</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" placeholder="Ej: Suite Presidencial, Habitación Deluxe">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="capacidad" class="form-label">Capacidad (personas)</label>
+                                <select class="form-select" id="capacidad">
+                                    <option selected disabled>Seleccione capacidad</option>
+                                    <option value="1">1 persona</option>
+                                    <option value="2">2 personas</option>
+                                    <option value="3">3 personas</option>
+                                    <option value="4">4 personas</option>
+                                    <option value="5">5 personas</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="amenidades" class="form-label">Amenidades</label>
+                            <textarea class="form-control" id="amenidades" rows="3" placeholder="Ej: WiFi, snacks, bebidas, TV, aire acondicionado, etc."></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" rows="3" placeholder="Ingrese una descripción detallada de la habitación"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="imagenHabitacion" class="form-label">Imagen de la Habitación</label>
+                            <input class="form-control" type="file" id="imagenHabitacion" accept="image/*">
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-secondary me-md-2">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar Habitación</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

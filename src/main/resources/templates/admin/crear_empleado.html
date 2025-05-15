@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Empleado</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css">
+</head>
+<body class="bg-light">
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="bi bi-person-plus-fill me-2"></i>Crear Nuevo Empleado</h4>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="nombre" class="form-label">Nombres</label>
+                                <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombres">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="apellido" class="form-label">Apellidos</label>
+                                <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellidos">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="genero" class="form-label">Género</label>
+                                <select class="form-select" id="genero">
+                                    <option selected disabled>Seleccione género</option>
+                                    <option value="MASCULINO">MASCULINO</option>
+                                    <option value="FEMENINO">FEMENINO</option>
+                                    <option value="OTRO">OTRO</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                                <input type="date" class="form-control" id="fechaNacimiento">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="telefono" class="form-label">Número de Celular</label>
+                                <input type="tel" class="form-control" id="telefono" placeholder="Ingrese número de celular">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" placeholder="Ingrese correo electrónico">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password" placeholder="Ingrese contraseña">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme contraseña">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="posicion" class="form-label">Posición</label>
+                                <select class="form-select" id="posicion">
+                                    <option selected disabled>Seleccione una posición</option>
+                                    <option value="1">Recepcionista</option>
+                                    <option value="2">Camarero/a</option>
+                                    <option value="3">Limpieza</option>
+                                    <option value="4">Cocinero/a</option>
+                                    <option value="5">Gerente</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="fechaIngreso" class="form-label">Fecha de Ingreso</label>
+                                <input type="date" class="form-control" id="fechaIngreso">
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-secondary me-md-2">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar Empleado</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

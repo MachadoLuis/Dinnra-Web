@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cliente</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css">
+</head>
+<body class="bg-light">
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="bi bi-person-plus-fill me-2"></i>Crear Nuevo Cliente</h4>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="names" class="form-label">Names</label>
+                                <input type="text" class="form-control" id="names" placeholder="Ingrese nombres">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="surnames" class="form-label">Surnames</label>
+                                <input type="text" class="form-control" id="surnames" placeholder="Ingrese apellidos">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Ingrese correo electrónico">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="telefono" class="form-label">Número de Celular</label>
+                                <input type="tel" class="form-control" id="telefono" placeholder="Ingrese número de celular">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password" placeholder="Ingrese contraseña">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme contraseña">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="posicion" class="form-label">Posición</label>
+                            <select class="form-select" id="posicion">
+                                <option selected disabled>Seleccione una posición</option>
+                                <option value="1">Huésped Regular</option>
+                                <option value="2">Huésped VIP</option>
+                                <option value="3">Cliente Corporativo</option>
+                                <option value="4">Agencia de Viajes</option>
+                            </select>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-secondary me-md-2">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
