@@ -4,11 +4,924 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
-    <link rel="stylesheet" th:href="@{/}">
+    <link rel="stylesheet" th:href="@{/css/dashboardEmpleado.css}">
 </head>
 <body>
-<div>
-    <h1>Prueba</h1>
+<div class="sidebar">
+    <div class="brand">
+        <h2>Dinrra</h2>
+    </div>
+    <ul>
+        <li><a href="#" class="active" data-tab="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="#" data-tab="reservations"><i class="fas fa-calendar-check"></i> Reservas</a></li>
+        <li><a href="#" data-tab="messages"><i class="fas fa-envelope"></i> Mensajes</a></li>
+        <li><a href="#" data-tab="rooms"><i class="fas fa-bed"></i> Habitaciones</a></li>
+        <li><a href="#" data-tab="clients"><i class="fas fa-users"></i> Clientes</a></li>
+        <li><a href="#" data-tab="settings"><i class="fas fa-cog"></i> Configuración</a></li>
+        <li><a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+    </ul>
 </div>
+
+<div class="main-content">
+    <div class="header">
+        <h1>Dashboard de Empleado</h1>
+        <div class="user-info">
+            <img src="/api/placeholder/40/40" alt="User Avatar">
+            <span>Bienvenido, <strong id="username">Usuario</strong></span>
+        </div>
+    </div>
+
+    <!-- Dashboard Tab -->
+    <div class="tab-content active" id="dashboard-content">
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Reservas Totales</h3>
+                <p id="total-reservations">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Mensajes Nuevos</h3>
+                <p id="new-messages">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Habitaciones Ocupadas</h3>
+                <p id="occupied-rooms">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Clientes Activos</h3>
+                <p id="active-clients">0</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Reservas Recientes</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Habitación</th>
+                    <th>Check-in</th>
+                    <th>Check-out</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="recent-reservations">
+                <!-- Los datos se cargarán dinámicamente -->
+                </tbody>
+            </table>
+            <div style="text-align: center; margin-top: 15px;">
+                <button class="btn btn-primary" id="view-all-reservations">Ver todas las reservas</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Mensajes Recientes</h2>
+            <div id="recent-messages">
+                <!-- Los mensajes se cargarán dinámicamente -->
+            </div>
+            <div style="text-align: center; margin-top: 15px;">
+                <button class="btn btn-primary" id="view-all-messages">Ver todos los mensajes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reservations Tab -->
+    <div class="tab-content" id="reservations-content">
+        <div class="card">
+            <h2>Todas las Reservas</h2>
+            <div class="search-container">
+                <input type="text" id="reservation-search" placeholder="Buscar por nombre, habitación, fecha...">
+            </div>
+            <div class="tabs">
+                <div class="tab active" data-status="all">Todas</div>
+                <div class="tab" data-status="confirmed">Confirmadas</div>
+                <div class="tab" data-status="pending">Pendientes</div>
+                <div class="tab" data-status="completed">Completadas</div>
+                <div class="tab" data-status="cancelled">Canceladas</div>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Habitación</th>
+                    <th>Check-in</th>
+                    <th>Check-out</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="all-reservations">
+                <!-- Los datos se cargarán dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Messages Tab -->
+    <div class="tab-content" id="messages-content">
+        <div class="card">
+            <h2>Todos los Mensajes</h2>
+            <div class="search-container">
+                <input type="text" id="message-search" placeholder="Buscar mensajes...">
+            </div>
+            <div class="tabs">
+                <div class="tab active" data-type="all">Todos</div>
+                <div class="tab" data-type="complaint">Reclamaciones</div>
+                <div class="tab" data-type="contact">Contacto</div>
+                <div class="tab" data-type="suggestion">Sugerencias</div>
+                <div class="tab" data-type="help">Ayuda</div>
+            </div>
+            <div id="all-messages">
+                <!-- Los mensajes se cargarán dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Rooms Tab -->
+    <div class="tab-content" id="rooms-content">
+        <div class="card">
+            <h2>Gestión de Habitaciones</h2>
+            <div class="search-container">
+                <input type="text" id="room-search" placeholder="Buscar habitación...">
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Tipo</th>
+                    <th>Capacidad</th>
+                    <th>Precio</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="all-rooms">
+                <!-- Los datos se cargarán dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Clients Tab -->
+    <div class="tab-content" id="clients-content">
+        <div class="card">
+            <h2>Gestión de Clientes</h2>
+            <div class="search-container">
+                <input type="text" id="client-search" placeholder="Buscar cliente...">
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Reservas</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="all-clients">
+                <!-- Los datos se cargarán dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Settings Tab -->
+    <div class="tab-content" id="settings-content">
+        <div class="card">
+            <h2>Configuración de la Cuenta</h2>
+            <form id="account-settings-form">
+                <label for="fullname">Nombre Completo</label>
+                <input type="text" id="fullname" placeholder="Nombre Completo">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Email">
+
+                <label for="phone">Teléfono</label>
+                <input type="text" id="phone" placeholder="Teléfono">
+
+                <label for="password">Nueva Contraseña</label>
+                <input type="password" id="password" placeholder="Dejar en blanco para mantener actual">
+
+                <label for="confirm-password">Confirmar Contraseña</label>
+                <input type="password" id="confirm-password" placeholder="Confirmar nueva contraseña">
+
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Detalles de Reserva -->
+<div class="modal" id="reservation-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Detalles de Reserva</h3>
+            <span class="close-btn">&times;</span>
+        </div>
+        <div id="reservation-details">
+            <!-- Los detalles se cargarán dinámicamente -->
+        </div>
+        <div style="text-align: right; margin-top: 15px;">
+            <button class="btn btn-warning reservation-action" data-action="edit">Editar</button>
+            <button class="btn btn-success reservation-action" data-action="confirm">Confirmar</button>
+            <button class="btn btn-danger reservation-action" data-action="cancel">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Detalle de Mensaje -->
+<div class="modal" id="message-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Detalle de Mensaje</h3>
+            <span class="close-btn">&times;</span>
+        </div>
+        <div id="message-details">
+            <!-- Los detalles se cargarán dinámicamente -->
+        </div>
+        <div style="margin-top: 15px;">
+            <form id="message-reply-form">
+                <label for="reply-message">Respuesta</label>
+                <textarea id="reply-message" placeholder="Escriba una respuesta..."></textarea>
+                <div style="text-align: right;">
+                    <button type="submit" class="btn btn-primary">Enviar Respuesta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Notificación -->
+<div class="notification" id="notification"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+<script>
+    // Datos de ejemplo - En una aplicación real, estos vendrían del backend
+    const mockData = {
+        reservations: [
+            { id: 1, clientName: 'Juan Pérez', roomNumber: '101', checkIn: '2025-05-14', checkOut: '2025-05-20', status: 'confirmed' },
+            { id: 2, clientName: 'María García', roomNumber: '203', checkIn: '2025-05-15', checkOut: '2025-05-18', status: 'pending' },
+            { id: 3, clientName: 'Carlos Rodríguez', roomNumber: '105', checkIn: '2025-05-10', checkOut: '2025-05-15', status: 'completed' },
+            { id: 4, clientName: 'Ana López', roomNumber: '302', checkIn: '2025-05-16', checkOut: '2025-05-22', status: 'confirmed' },
+            { id: 5, clientName: 'Luis Martínez', roomNumber: '204', checkIn: '2025-05-18', checkOut: '2025-05-25', status: 'pending' },
+            { id: 6, clientName: 'Carmen Sánchez', roomNumber: '107', checkIn: '2025-05-12', checkOut: '2025-05-14', status: 'cancelled' }
+        ],
+        messages: [
+            {
+                id: 1,
+                type: 'complaint',
+                subject: 'Problema con la limpieza',
+                message: 'La habitación no estaba correctamente limpia cuando llegamos.',
+                sender: 'Juan Pérez',
+                email: 'juan@example.com',
+                date: '2025-05-14',
+                read: false,
+                reservation: 1
+            },
+            {
+                id: 2,
+                type: 'contact',
+                subject: 'Información sobre servicios',
+                message: 'Me gustaría saber si ofrecen servicio de desayuno a la habitación.',
+                sender: 'María García',
+                email: 'maria@example.com',
+                date: '2025-05-13',
+                read: true,
+                reservation: 2
+            },
+            {
+                id: 3,
+                type: 'suggestion',
+                subject: 'Mejora en el servicio',
+                message: 'Sugiero que incluyan más opciones vegetarianas en el menú del restaurante.',
+                sender: 'Carlos Rodríguez',
+                email: 'carlos@example.com',
+                date: '2025-05-12',
+                read: false,
+                reservation: 3
+            },
+            {
+                id: 4,
+                type: 'help',
+                subject: 'Ayuda con el WiFi',
+                message: 'No puedo conectarme a la red WiFi, necesito asistencia.',
+                sender: 'Ana López',
+                email: 'ana@example.com',
+                date: '2025-05-15',
+                read: false,
+                reservation: 4
+            }
+        ],
+        rooms: [
+            { number: '101', type: 'Individual', capacity: 1, price: 100, status: 'occupied' },
+            { number: '102', type: 'Individual', capacity: 1, price: 100, status: 'available' },
+            { number: '103', type: 'Doble', capacity: 2, price: 150, status: 'available' },
+            { number: '104', type: 'Doble', capacity: 2, price: 150, status: 'maintenance' },
+            { number: '105', type: 'Suite', capacity: 4, price: 300, status: 'occupied' },
+            { number: '201', type: 'Individual', capacity: 1, price: 120, status: 'available' },
+            { number: '202', type: 'Doble', capacity: 2, price: 170, status: 'available' },
+            { number: '203', type: 'Suite', capacity: 3, price: 250, status: 'occupied' },
+            { number: '204', type: 'Doble', capacity: 2, price: 170, status: 'available' },
+            { number: '301', type: 'Individual', capacity: 1, price: 130, status: 'available' },
+            { number: '302', type: 'Suite', capacity: 4, price: 350, status: 'occupied' }
+        ],
+        clients: [
+            { id: 1, name: 'Juan Pérez', email: 'juan@example.com', phone: '123-456-7890', reservations: 3 },
+            { id: 2, name: 'María García', email: 'maria@example.com', phone: '234-567-8901', reservations: 1 },
+            { id: 3, name: 'Carlos Rodríguez', email: 'carlos@example.com', phone: '345-678-9012', reservations: 2 },
+            { id: 4, name: 'Ana López', email: 'ana@example.com', phone: '456-789-0123', reservations: 1 },
+            { id: 5, name: 'Luis Martínez', email: 'luis@example.com', phone: '567-890-1234', reservations: 1 },
+            { id: 6, name: 'Carmen Sánchez', email: 'carmen@example.com', phone: '678-901-2345', reservations: 1 }
+        ]
+    };
+
+    // Cargar datos iniciales
+    document.addEventListener('DOMContentLoaded', function() {
+        loadDashboardData();
+
+        // Establecer el nombre de usuario
+        document.getElementById('username').textContent = 'Juan Empleado';
+
+        // Configurar los event listeners
+        setupEventListeners();
+    });
+
+    // Función para cargar datos del dashboard
+    function loadDashboardData() {
+        // Cargar estadísticas
+        document.getElementById('total-reservations').textContent = mockData.reservations.length;
+        document.getElementById('new-messages').textContent = mockData.messages.filter(m => !m.read).length;
+        document.getElementById('occupied-rooms').textContent = mockData.rooms.filter(r => r.status === 'occupied').length;
+        document.getElementById('active-clients').textContent = mockData.clients.length;
+
+        // Cargar reservas recientes
+        loadRecentReservations();
+
+        // Cargar mensajes recientes
+        loadRecentMessages();
+
+        // Cargar datos completos para las demás pestañas
+        loadAllReservations();
+        loadAllMessages();
+        loadAllRooms();
+        loadAllClients();
+    }
+
+    // Cargar reservas recientes
+    function loadRecentReservations() {
+        const tbody = document.getElementById('recent-reservations');
+        tbody.innerHTML = '';
+
+        // Mostrar solo las 5 reservas más recientes
+        const recentReservations = [...mockData.reservations].sort((a, b) => new Date(b.checkIn) - new Date(a.checkIn)).slice(0, 5);
+
+        recentReservations.forEach(reservation => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${reservation.id}</td>
+                <td>${reservation.clientName}</td>
+                <td>${reservation.roomNumber}</td>
+                <td>${formatDate(reservation.checkIn)}</td>
+                <td>${formatDate(reservation.checkOut)}</td>
+                <td><span class="badge badge-${reservation.status}">${formatStatus(reservation.status)}</span></td>
+                <td>
+                    <button class="btn btn-primary btn-sm view-reservation" data-id="${reservation.id}">Ver</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        // Configurar los event listeners para los botones de ver reserva
+        document.querySelectorAll('.view-reservation').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const reservationId = parseInt(this.getAttribute('data-id'));
+                showReservationDetails(reservationId);
+            });
+        });
+    }
+
+    // Cargar mensajes recientes
+    function loadRecentMessages() {
+        const container = document.getElementById('recent-messages');
+        container.innerHTML = '';
+
+        // Mostrar solo los 3 mensajes más recientes
+        const recentMessages = [...mockData.messages].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
+
+        recentMessages.forEach(message => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            messageDiv.innerHTML = `
+                <div class="message-header">
+                    <div>
+                        <strong>${message.sender}</strong> - ${formatDate(message.date)}
+                    </div>
+                    <span class="message-type message-type-${message.type}">${formatMessageType(message.type)}</span>
+                </div>
+                <h4>${message.subject}</h4>
+                <p>${message.message.substring(0, 100)}${message.message.length > 100 ? '...' : ''}</p>
+                <button class="btn btn-primary btn-sm view-message" data-id="${message.id}">Ver completo</button>
+            </div>
+            `;
+            container.appendChild(messageDiv);
+        });
+
+        // Configurar los event listeners para los botones de ver mensaje
+        document.querySelectorAll('.view-message').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const messageId = parseInt(this.getAttribute('data-id'));
+                showMessageDetails(messageId);
+            });
+        });
+    }
+
+    // Cargar todas las reservas
+    function loadAllReservations(filter = 'all') {
+        const tbody = document.getElementById('all-reservations');
+        tbody.innerHTML = '';
+
+        let filteredReservations = [...mockData.reservations];
+
+        // Aplicar filtro si no es 'all'
+        if (filter !== 'all') {
+            filteredReservations = filteredReservations.filter(r => r.status === filter);
+        }
+
+        // Ordenar por fecha de check-in (más reciente primero)
+        filteredReservations.sort((a, b) => new Date(b.checkIn) - new Date(a.checkIn));
+
+        filteredReservations.forEach(reservation => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${reservation.id}</td>
+                <td>${reservation.clientName}</td>
+                <td>${reservation.roomNumber}</td>
+                <td>${formatDate(reservation.checkIn)}</td>
+                <td>${formatDate(reservation.checkOut)}</td>
+                <td><span class="badge badge-${reservation.status}">${formatStatus(reservation.status)}</span></td>
+                <td>
+                    <button class="btn btn-primary btn-sm view-reservation" data-id="${reservation.id}">Ver</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        // Configurar los event listeners para los botones de ver reserva
+        document.querySelectorAll('.view-reservation').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const reservationId = parseInt(this.getAttribute('data-id'));
+                showReservationDetails(reservationId);
+            });
+        });
+    }
+
+    // Cargar todos los mensajes
+    function loadAllMessages(filter = 'all') {
+        const container = document.getElementById('all-messages');
+        container.innerHTML = '';
+
+        let filteredMessages = [...mockData.messages];
+
+        // Aplicar filtro si no es 'all'
+        if (filter !== 'all') {
+            filteredMessages = filteredMessages.filter(m => m.type === filter);
+        }
+
+        // Ordenar por fecha (más reciente primero)
+        filteredMessages.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        filteredMessages.forEach(message => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            if (!message.read) {
+                messageDiv.style.borderLeft = '3px solid var(--primary)';
+            }
+            messageDiv.innerHTML = `
+                <div class="message-header">
+                    <div>
+                        <strong>${message.sender}</strong> - ${formatDate(message.date)}
+                    </div>
+                    <span class="message-type message-type-${message.type}">${formatMessageType(message.type)}</span>
+                </div>
+                <h4>${message.subject}</h4>
+                <p>${message.message.substring(0, 100)}${message.message.length > 100 ? '...' : ''}</p>
+                <button class="btn btn-primary btn-sm view-message" data-id="${message.id}">Ver completo</button>
+            `;
+            container.appendChild(messageDiv);
+        });
+
+        // Configurar los event listeners para los botones de ver mensaje
+        document.querySelectorAll('.view-message').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const messageId = parseInt(this.getAttribute('data-id'));
+                showMessageDetails(messageId);
+            });
+        });
+    }
+
+    // Cargar todas las habitaciones
+    function loadAllRooms() {
+        const tbody = document.getElementById('all-rooms');
+        tbody.innerHTML = '';
+
+        mockData.rooms.forEach(room => {
+            const tr = document.createElement('tr');
+            let statusClass = '';
+            switch(room.status) {
+                case 'available': statusClass = 'success'; break;
+                case 'occupied': statusClass = 'warning'; break;
+                case 'maintenance': statusClass = 'danger'; break;
+            }
+            tr.innerHTML = `
+                <td>${room.number}</td>
+                <td>${room.type}</td>
+                <td>${room.capacity}</td>
+                <td>€${room.price}</td>
+                <td><span class="badge badge-${statusClass}">${formatRoomStatus(room.status)}</span></td>
+                <td>
+                    <button class="btn btn-primary btn-sm">Editar</button>
+                    <button class="btn btn-warning btn-sm">Cambiar Estado</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    // Cargar todos los clientes
+    function loadAllClients() {
+        const tbody = document.getElementById('all-clients');
+        tbody.innerHTML = '';
+
+        mockData.clients.forEach(client => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${client.id}</td>
+                <td>${client.name}</td>
+                <td>${client.email}</td>
+                <td>${client.phone}</td>
+                <td>${client.reservations}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm view-client-reservations" data-id="${client.id}">Ver Reservas</button>
+                    <button class="btn btn-warning btn-sm">Editar</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    // Mostrar detalles de una reserva
+    function showReservationDetails(reservationId) {
+        const reservation = mockData.reservations.find(r => r.id === reservationId);
+        if (!reservation) return;
+
+        const client = mockData.clients.find(c => c.name === reservation.clientName);
+        const room = mockData.rooms.find(r => r.number === reservation.roomNumber);
+
+        const detailsContainer = document.getElementById('reservation-details');
+        detailsContainer.innerHTML = `
+            <div style="margin-bottom: 20px;">
+                <h4>Información de la Reserva</h4>
+                <p><strong>ID:</strong> ${reservation.id}</p>
+                <p><strong>Check-in:</strong> ${formatDate(reservation.checkIn)}</p>
+                <p><strong>Check-out:</strong> ${formatDate(reservation.checkOut)}</p>
+                <p><strong>Estado:</strong> <span class="badge badge-${reservation.status}">${formatStatus(reservation.status)}</span></p>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <h4>Información del Cliente</h4>
+                <p><strong>Nombre:</strong> ${client.name}</p>
+                <p><strong>Email:</strong> ${client.email}</p>
+                <p><strong>Teléfono:</strong> ${client.phone}</p>
+            </div>
+
+            <div>
+                <h4>Información de la Habitación</h4>
+                <p><strong>Número:</strong> ${room.number}</p>
+                <p><strong>Tipo:</strong> ${room.type}</p>
+                <p><strong>Capacidad:</strong> ${room.capacity} personas</p>
+                <p><strong>Precio:</strong> €${room.price} por noche</p>
+            </div>
+        `;
+
+        // Actualizar visibilidad de los botones de acción según el estado de la reserva
+        const confirmBtn = document.querySelector('.reservation-action[data-action="confirm"]');
+        const cancelBtn = document.querySelector('.reservation-action[data-action="cancel"]');
+        const editBtn = document.querySelector('.reservation-action[data-action="edit"]');
+
+        if (reservation.status === 'pending') {
+            confirmBtn.style.display = 'inline-block';
+            cancelBtn.style.display = 'inline-block';
+            editBtn.style.display = 'inline-block';
+        } else if (reservation.status === 'confirmed') {
+            confirmBtn.style.display = 'none';
+            cancelBtn.style.display = 'inline-block';
+            editBtn.style.display = 'inline-block';
+        } else {
+            confirmBtn.style.display = 'none';
+            cancelBtn.style.display = 'none';
+            editBtn.style.display = 'none';
+        }
+
+        // Mostrar el modal
+        document.getElementById('reservation-modal').style.display = 'flex';
+    }
+
+    // Mostrar detalles de un mensaje
+    function showMessageDetails(messageId) {
+        const message = mockData.messages.find(m => m.id === messageId);
+        if (!message) return;
+
+        // Marcar como leído si no lo estaba
+        if (!message.read) {
+            message.read = true;
+            // Actualizar contador de mensajes no leídos
+            document.getElementById('new-messages').textContent = mockData.messages.filter(m => !m.read).length;
+        }
+
+        const detailsContainer = document.getElementById('message-details');
+        detailsContainer.innerHTML = `
+            <div>
+                <p><strong>De:</strong> ${message.sender} (${message.email})</p>
+                <p><strong>Fecha:</strong> ${formatDate(message.date)}</p>
+                <p><strong>Tipo:</strong> <span class="message-type message-type-${message.type}">${formatMessageType(message.type)}</span></p>
+                <p><strong>Asunto:</strong> ${message.subject}</p>
+                <div style="margin-top: 15px; padding: 15px; background-color: #f9f9f9; border-radius: 4px;">
+                    <p>${message.message}</p>
+                </div>
+            </div>
+        `;
+
+        // Si el mensaje está asociado a una reserva, mostrar la información
+        if (message.reservation) {
+            const reservation = mockData.reservations.find(r => r.id === message.reservation);
+            if (reservation) {
+                const reservationInfo = document.createElement('div');
+                reservationInfo.style.marginTop = '15px';
+                reservationInfo.innerHTML = `
+                    <h4>Reserva Asociada</h4>
+                    <p><strong>ID:</strong> ${reservation.id}</p>
+                    <p><strong>Cliente:</strong> ${reservation.clientName}</p>
+                    <p><strong>Habitación:</strong> ${reservation.roomNumber}</p>
+                    <p><strong>Check-in:</strong> ${formatDate(reservation.checkIn)}</p>
+                    <p><strong>Check-out:</strong> ${formatDate(reservation.checkOut)}</p>
+                    <p><strong>Estado:</strong> <span class="badge badge-${reservation.status}">${formatStatus(reservation.status)}</span></p>
+                `;
+                detailsContainer.appendChild(reservationInfo);
+            }
+        }
+
+        // Limpiar formulario de respuesta
+        document.getElementById('reply-message').value = '';
+
+        // Mostrar el modal
+        document.getElementById('message-modal').style.display = 'flex';
+    }
+
+    // Configurar event listeners
+    function setupEventListeners() {
+        // Navegación entre pestañas
+        document.querySelectorAll('.sidebar ul li a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // No hacer nada si es el enlace de logout
+                if (this.id === 'logout') {
+                    showNotification('Has cerrado sesión correctamente', 'success');
+                    return;
+                }
+
+                // Actualizar clases activas en la navegación
+                document.querySelectorAll('.sidebar ul li a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+
+                // Mostrar el contenido correspondiente
+                const tabName = this.getAttribute('data-tab');
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                document.getElementById(`${tabName}-content`).classList.add('active');
+            });
+        });
+
+        // Botón para ver todas las reservas
+        document.getElementById('view-all-reservations').addEventListener('click', function() {
+            // Cambiar a la pestaña de reservas
+            document.querySelectorAll('.sidebar ul li a').forEach(l => l.classList.remove('active'));
+            document.querySelector('.sidebar ul li a[data-tab="reservations"]').classList.add('active');
+
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById('reservations-content').classList.add('active');
+        });
+
+        // Botón para ver todos los mensajes
+        document.getElementById('view-all-messages').addEventListener('click', function() {
+            // Cambiar a la pestaña de mensajes
+            document.querySelectorAll('.sidebar ul li a').forEach(l => l.classList.remove('active'));
+            document.querySelector('.sidebar ul li a[data-tab="messages"]').classList.add('active');
+
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById('messages-content').classList.add('active');
+        });
+
+        // Filtros de reservas
+        document.querySelectorAll('#reservations-content .tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('#reservations-content .tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                const status = this.getAttribute('data-status');
+                loadAllReservations(status);
+            });
+        });
+
+        // Filtros de mensajes
+        document.querySelectorAll('#messages-content .tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('#messages-content .tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                const type = this.getAttribute('data-type');
+                loadAllMessages(type);
+            });
+        });
+
+        // Cerrar modals
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.closest('.modal').style.display = 'none';
+            });
+        });
+
+        // Cerrar modals al hacer click fuera del contenido
+        window.addEventListener('click', function(e) {
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Acciones de reserva
+        document.querySelectorAll('.reservation-action').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const action = this.getAttribute('data-action');
+                const reservationId = parseInt(document.querySelector('.view-reservation[data-id]').getAttribute('data-id'));
+
+                // En una aplicación real, aquí se haría una llamada al backend
+                const reservation = mockData.reservations.find(r => r.id === reservationId);
+
+                if (action === 'confirm' && reservation.status === 'pending') {
+                    reservation.status = 'confirmed';
+                    showNotification('Reserva confirmada correctamente', 'success');
+                } else if (action === 'cancel') {
+                    reservation.status = 'cancelled';
+                    showNotification('Reserva cancelada correctamente', 'success');
+                } else if (action === 'edit') {
+                    showNotification('Función de edición no implementada en este demo', 'error');
+                }
+
+                // Cerrar modal
+                document.getElementById('reservation-modal').style.display = 'none';
+
+                // Actualizar datos
+                loadRecentReservations();
+                loadAllReservations();
+            });
+        });
+
+        // Formulario de respuesta a mensajes
+        document.getElementById('message-reply-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const replyText = document.getElementById('reply-message').value.trim();
+            if (!replyText) {
+                showNotification('Por favor, escriba una respuesta', 'error');
+                return;
+            }
+
+            // En una aplicación real, aquí se enviaría la respuesta al backend
+            showNotification('Respuesta enviada correctamente', 'success');
+
+            // Cerrar modal
+            document.getElementById('message-modal').style.display = 'none';
+        });
+
+        // Formulario de configuración de cuenta
+        document.getElementById('account-settings-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const fullname = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                showNotification('Las contraseñas no coinciden', 'error');
+                return;
+            }
+
+            // En una aplicación real, aquí se enviarían los datos al backend
+            showNotification('Configuración guardada correctamente', 'success');
+
+            // Actualizar nombre de usuario si se cambió
+            if (fullname) {
+                document.getElementById('username').textContent = fullname;
+            }
+        });
+
+        // Búsqueda de reservas
+        document.getElementById('reservation-search').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#all-reservations tr');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+
+        // Búsqueda de mensajes
+        document.getElementById('message-search').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const messages = document.querySelectorAll('#all-messages .message');
+
+            messages.forEach(message => {
+                const text = message.textContent.toLowerCase();
+                message.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+
+        // Búsqueda de habitaciones
+        document.getElementById('room-search').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#all-rooms tr');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+
+        // Búsqueda de clientes
+        document.getElementById('client-search').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#all-clients tr');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+    }
+
+    // Funciones de utilidad
+    function formatDate(dateString) {
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        return new Date(dateString).toLocaleDateString('es-ES', options);
+    }
+
+    function formatStatus(status) {
+        switch(status) {
+            case 'pending': return 'Pendiente';
+            case 'confirmed': return 'Confirmada';
+            case 'completed': return 'Completada';
+            case 'cancelled': return 'Cancelada';
+            default: return status;
+        }
+    }
+
+    function formatRoomStatus(status) {
+        switch(status) {
+            case 'available': return 'Disponible';
+            case 'occupied': return 'Ocupada';
+            case 'maintenance': return 'Mantenimiento';
+            default: return status;
+        }
+    }
+
+    function formatMessageType(type) {
+        switch(type) {
+            case 'complaint': return 'Reclamación';
+            case 'contact': return 'Contacto';
+            case 'suggestion': return 'Sugerencia';
+            case 'help': return 'Ayuda';
+            default: return type;
+        }
+    }
+
+    function showNotification(message, type) {
+        const notification = document.getElementById('notification');
+        notification.textContent = message;
+        notification.className = `notification ${type}`;
+        notification.classList.add('show');
+
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+    }
+</script>
 </body>
 </html>

@@ -5,12 +5,278 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
-    <!-- CADA LINK QUE QUIERAS REFERENCIAR PARA UN CSS O UN SCRIPT DEBE SEGUIR ESTA FORMA-->
-    <!-- Colocar th:href="@{/css/nombrearchivo.css} PARA ARCHIVOS CSS
-         Colocar th:href="@{/script/noombrearchivo.js} PARA LOS SCRIPT-->
-    <link rel="stylesheet" th:href="@{/css/prueba.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/perfilUsuario.css}">
 </head>
 <body>
-<h1>PRUEBA</h1>
+<header>
+    <div class="container">
+        <h1>MiHotel</h1>
+    </div>
+</header>
+
+<div class="container">
+    <div class="user-header">
+        <div class="user-info">
+            <div class="user-avatar">JD</div>
+            <div class="welcome-text">
+                <h1>Bienvenido, Juan Díaz</h1>
+                <p>Miembro desde Marzo 2023</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <div class="tab active" onclick="changeTab('active')">Reservas activas</div>
+        <div class="tab" onclick="changeTab('past')">Historial de reservas</div>
+    </div>
+
+    <div id="active-reservations" class="reservations">
+        <!-- Reserva Activa 1 -->
+        <div class="reservation-card">
+            <header class="reservation-header">
+                <div class="hotel-name">Hotel Índigo</div>
+                <div class="reservation-status status-active">Activa</div>
+            </header>
+            <img src="https://digital.ihg.com/is/image/ihg/hotel-indigo-new-york-6372067231-4x3?wid=1280&fit=constrain&resmode=bisharp" alt="Hotel Índigo" class="reservation-image" />
+            <div class="reservation-details">
+                <div class="reservation-dates">
+                    <div class="date-group">
+                        <div class="date-label">Entrada</div>
+                        <div class="date-value">24 Mayo 2025</div>
+                    </div>
+                    <div class="date-group">
+                        <div class="date-label">Salida</div>
+                        <div class="date-value">28 Mayo 2025</div>
+                    </div>
+                </div>
+                <div class="room-details">
+                    <div class="room-type">1 Habitación Estándar Con Cama Tamaño Queen Y Vistas A La Ciudad</div>
+                    <div class="room-price">S/.489/noche</div>
+                </div>
+                <div class="reservation-actions">
+                    <button class="btn btn-outline" onclick="requestHelp('HP-2025-0542')">
+                        <span class="btn-icon">🛎️</span> Solicitar ayuda
+                    </button>
+                    <button class="btn btn-outline" onclick="sendSuggestion('HP-2025-0542')">
+                        <span class="btn-icon">💡</span> Sugerencias
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reserva Activa 2 -->
+        <div class="reservation-card">
+            <header class="reservation-header">
+                <div class="hotel-name">Hotel Richland</div>
+                <div class="reservation-status status-active">Activa</div>
+            </header>
+            <img src="https://www.hilton.com/im/en/NYCNHHH/23091785/king-room-1-.jpg?impolicy=crop&cw=5000&ch=2842&gravity=NorthWest&xposition=0&yposition=246&rw=760&rh=432" alt="Hotel Richland" class="reservation-image" />
+            <div class="reservation-details">
+                <div class="reservation-dates">
+                    <div class="date-group">
+                        <div class="date-label">Entrada</div>
+                        <div class="date-value">10 Junio 2025</div>
+                    </div>
+                    <div class="date-group">
+                        <div class="date-label">Salida</div>
+                        <div class="date-value">15 Junio 2025</div>
+                    </div>
+                </div>
+                <div class="room-details">
+                    <div class="room-type">Habitación Urban-una cama King-accesible</div>
+                    <div class="room-price">S/.645/noche</div>
+                </div>
+                <div class="reservation-actions">
+                    <button class="btn btn-outline" onclick="requestHelp('RC-2025-0378')">
+                        <span class="btn-icon">🛎️</span> Solicitar ayuda
+                    </button>
+                    <button class="btn btn-outline" onclick="sendSuggestion('RC-2025-0378')">
+                        <span class="btn-icon">💡</span> Sugerencias
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="past-reservations" class="reservations" style="display: none;">
+        <!-- Reserva Pasada 1 -->
+        <div class="reservation-card">
+            <header class="reservation-header">
+                <div class="hotel-name">Gran Hotel Central</div>
+                <div class="reservation-status status-completed">Completada</div>
+            </header>
+            <img src="https://www.hilton.com/im/en/NYCNHHH/5293187/adjoining-room.jpg?impolicy=crop&cw=4263&ch=2423&gravity=NorthWest&xposition=0&yposition=288&rw=760&rh=432" alt="Gran Hotel Central" class="reservation-image" />
+            <div class="reservation-details">
+                <div class="reservation-dates">
+                    <div class="date-group">
+                        <div class="date-label">Entrada</div>
+                        <div class="date-value">12 Abril 2025</div>
+                    </div>
+                    <div class="date-group">
+                        <div class="date-label">Salida</div>
+                        <div class="date-value">15 Abril 2025</div>
+                    </div>
+                </div>
+                <div class="room-details">
+                    <div class="room-type">Suite familiar con 2 camas dobles,</div>
+                    <div class="room-price">S/.1020/noche</div>
+                </div>
+                <div class="reservation-actions">
+                    <button class="btn btn-primary" onclick="leaveReview('GH-2025-0219')">
+                        <span class="btn-icon">⭐</span> Escribir reseña
+                    </button>
+                    <button class="btn btn-outline" onclick="sendSuggestion('GH-2025-0219')">
+                        <span class="btn-icon">💡</span> Sugerencias
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reserva Pasada 2 -->
+        <div class="reservation-card">
+            <header class="reservation-header">
+                <div class="hotel-name">Hotel Montaña Azul</div>
+                <div class="reservation-status status-completed">Completada</div>
+            </header>
+            <img src="https://cf.bstatic.com/xdata/images/hotel/max500/431407672.jpg?k=67a3e43781f0ad72efc0a6ed9c7306aab415437be0599088f469fe4123a52faf&o=" alt="Hotel Montaña Azul" class="reservation-image" />
+            <div class="reservation-details">
+                <div class="reservation-dates">
+                    <div class="date-group">
+                        <div class="date-label">Entrada</div>
+                        <div class="date-value">18 Marzo 2025</div>
+                    </div>
+                    <div class="date-group">
+                        <div class="date-label">Salida</div>
+                        <div class="date-value">20 Marzo 2025</div>
+                    </div>
+                </div>
+                <div class="room-details">
+                    <div class="room-type">Cabaña de Lujo, 1 cama king</div>
+                    <div class="room-price">S/.475/noche</div>
+                </div>
+                <div class="reservation-actions">
+                    <button class="btn btn-primary" onclick="leaveReview('HM-2025-0154')">
+                        <span class="btn-icon">⭐</span> Escribir reseña
+                    </button>
+                    <button class="btn btn-outline" onclick="sendSuggestion('HM-2025-0154')">
+                        <span class="btn-icon">💡</span> Sugerencias
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reserva Pasada 3 -->
+        <div class="reservation-card">
+            <header class="reservation-header">
+                <div class="hotel-name">Urban Suites & Spa</div>
+                <div class="reservation-status status-completed">Completada</div>
+            </header>
+            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/464687763.jpg?k=524fa6bbb8cb7afb0376bced009bd5f7e291a2862ffa484c1002fcf5b1d3431a&o=" alt="Urban Suites & Spa" class="reservation-image" />
+            <div class="reservation-details">
+                <div class="reservation-dates">
+                    <div class="date-group">
+                        <div class="date-label">Entrada</div>
+                        <div class="date-value">5 Febrero 2025</div>
+                    </div>
+                    <div class="date-group">
+                        <div class="date-label">Salida</div>
+                        <div class="date-value">9 Febrero 2025</div>
+                    </div>
+                </div>
+                <div class="room-details">
+                    <div class="room-type">Suite Junior, 1 cama king</div>
+                    <div class="room-price">S/.610/noche</div>
+                </div>
+                <div class="reservation-actions">
+                    <button class="btn btn-primary" onclick="leaveReview('US-2025-0097')">
+                        <span class="btn-icon">⭐</span> Escribir reseña
+                    </button>
+                    <button class="btn btn-outline" onclick="sendSuggestion('US-2025-0097')">
+                        <span class="btn-icon">💡</span> Sugerencias
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function changeTab(tab) {
+        // Resetear todas las pestañas
+        document.querySelectorAll('.tab').forEach(el => {
+            el.classList.remove('active');
+        });
+
+        // Ocultar todos los contenidos
+        document.getElementById('active-reservations').style.display = 'none';
+        document.getElementById('past-reservations').style.display = 'none';
+
+        // Activar la pestaña seleccionada
+        if (tab === 'active') {
+            document.querySelectorAll('.tab')[0].classList.add('active');
+            document.getElementById('active-reservations').style.display = 'grid';
+        } else if (tab === 'past') {
+            document.querySelectorAll('.tab')[1].classList.add('active');
+            document.getElementById('past-reservations').style.display = 'grid';
+        }
+    }
+
+    function leaveReview(reservationId) {
+        alert('Abriendo formulario de reseña para la reserva: ' + reservationId);
+        // Aquí se implementaría la lógica para abrir un modal de reseña
+    }
+
+    function requestHelp(reservationId) {
+        alert('Solicitando ayuda para la reserva: ' + reservationId);
+        // Aquí se implementaría la lógica para conectar con un empleado
+    }
+
+    function sendSuggestion(reservationId) {
+        alert('Abriendo formulario de sugerencias para la reserva: ' + reservationId);
+        // Aquí se implementaría la lógica para abrir un modal de sugerencias
+    }
+</script>
+<!-- Footer -->
+<footer class="bg-light border-top py-4">
+    <div class="container">
+        <div class="row">
+            <!-- info -->
+            <div class="col-md-4">
+                <h5 class="fw-bold">Dinnra</h5>
+                <p class="text-muted">Somos la mejor página de hoteles 💪</p>
+            </div>
+            <!-- enlaces -->
+            <div class="col-md-4">
+                <h5 class="fw-bold">Enlaces
+                </h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-decoration-none text-muted">Acerca de nosotros</a></li>
+                    <li><a href="#" class="text-decoration-none text-muted">Política de privacidad</a></li>
+                    <li><a th:href="@{/usuario/usuario_libro_reclamaciones}" class="text-decoration-none text-muted">Libro de reclamaciones</a></li>
+                    <li><a href="#" class="text-decoration-none text-muted">Términos y condiciones</a></li>
+                    <li><a th:href="@{/public/contacto}" class="text-decoration-none text-muted">Contáctanos</a></li>
+                </ul>
+            </div>
+            <!-- redes sociales -->
+            <div class="col-md-4">
+                <h5 class="fw-bold">Síguenos</h5>
+                <div class="d-flex gap-3">
+                    <a href="https://www.facebook.com/" class="text-muted"><i class="bi bi-facebook fs-4"></i></a>
+                    <a href="https://x.com/home?lang=es" class="text-muted"><i class="bi bi-twitter fs-4"></i></a>
+                    <a href="https://www.instagram.com/" class="text-muted"><i class="bi bi-instagram fs-4"></i></a>
+                    <a href="https://www.linkedin.com/home/?originalSubdomain=pe" class="text-muted"><i class="bi bi-linkedin fs-4"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <p class="text-muted mb-0">&copy; 2025 Dinnra. Todos los derechos reservados.</p>
+    </div>
+</footer>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
