@@ -5,12 +5,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
-    <!-- CADA LINK QUE QUIERAS REFERENCIAR PARA UN CSS O UN SCRIPT DEBE SEGUIR ESTA FORMA-->
-    <!-- Colocar th:href="@{/css/nombrearchivo.css} PARA ARCHIVOS CSS
-         Colocar th:href="@{/script/noombrearchivo.js} PARA LOS SCRIPT-->
-    <link rel="stylesheet" th:href="@{/css/prueba.css}">
+
+    <script  th:href="@{/script/review.js}"></script>
+
+    <style>
+        .star-rating {
+            direction: rtl;
+            font-size: 2rem;
+            unicode-bidi: bidi-override;
+            display: inline-flex;
+        }
+        .star-rating input[type="radio"] {
+            display: none;
+        }
+        .star-rating label {
+            color: #ddd;
+            cursor: pointer;
+        }
+        .star-rating input[type="radio"]:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #f5b301;
+        }
+    </style>
 </head>
 <body>
-<h1>PRUEBA</h1>
+<div class="container my-5" style="max-width: 600px;">
+    <h2 class="mb-4 text-center">Deja tu reseña</h2>
+    <form id="reviewForm">
+        <!-- Selección de habitación -->
+        <div class="mb-3">
+            <label for="roomSelect" class="form-label">Selecciona la habitación</label>
+            <select id="roomSelect" name="room" class="form-select" required>
+                <option value="">-- Elige una habitación --</option>
+                <option value="Casa Andina Select Zorritos">Casa Andina Select Zorritos</option>
+                <option value="Mercure Ariosto Lima">Mercure Ariosto Lima</option>
+                <option value="Senator Barajas">Senator Barajas</option>
+            </select>
+        </div>
+
+        <!-- Calificación -->
+        <div class="mb-3">
+            <label class="form-label">Calificación</label>
+            <div class="star-rating">
+                <input type="radio" id="star5" name="rating" value="5" required />
+                <label for="star5" title="5 estrellas">&#9733;</label>
+
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label for="star4" title="4 estrellas">&#9733;</label>
+
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label for="star3" title="3 estrellas">&#9733;</label>
+
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label for="star2" title="2 estrellas">&#9733;</label>
+
+                <input type="radio" id="star1" name="rating" value="1" />
+                <label for="star1" title="1 estrella">&#9733;</label>
+            </div>
+        </div>
+
+        <!-- Comentario -->
+        <div class="mb-3">
+            <label for="comment" class="form-label">Comentario</label>
+            <textarea id="comment" name="comment" class="form-control" rows="4" placeholder="Escribe tu opinión..." required></textarea>
+        </div>
+
+        <button type="submit" onclick="location.href='mis_reservas.html?room=Casa'"   class="btn btn-primary w-100">Enviar Reseña</button>
+    </form>
+</div>
+
 </body>
 </html>

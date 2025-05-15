@@ -5,12 +5,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
-    <!-- CADA LINK QUE QUIERAS REFERENCIAR PARA UN CSS O UN SCRIPT DEBE SEGUIR ESTA FORMA-->
-    <!-- Colocar th:href="@{/css/nombrearchivo.css} PARA ARCHIVOS CSS
-         Colocar th:href="@{/script/noombrearchivo.js} PARA LOS SCRIPT-->
-    <link rel="stylesheet" th:href="@{/css/prueba.css}">
+
+    <script th:src="@{/script/reserva.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/reserva.css}">
+
 </head>
 <body>
-<h1>PRUEBA</h1>
+
+<section id="ofertas-hoteles" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Excelentes ofertas de hotel del momento</h2>
+        <div class="row">
+
+            <div class="col-md-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card">
+                        <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_267,q_40,w_400/hotelier-images/2f/b5/c63258f974733a7cf501f9df3f4f7df465cf2b59865e1cb997ab5a9666a2.jpeg"
+                             class="card-img-top" alt="Casa Andina Select Zorritos">
+                        <div class="card-body">
+                            <h5 class="card-title">Casa Andina Select Zorritos</h5>
+                            <p class="text-muted">8.9 - Excelente (5274)</p>
+                            <p class="text-muted"><i class="bi bi-geo-alt"></i> Tumbes, Perú</p>
+                            <span class="badge bg-danger" data-bs-toggle="tooltip"
+                                  title="Esta propiedad es un 10% más económica que nuestra previsión de precio, que se basa en el precio promedio de la propiedad en el que hicieron clic los usuarios de trivago en los últimos seis meses, ajustado por temporada.">
+                                    10% menos de lo habitual
+                                </span>
+                            <p class="mt-2">S/ 520 <small class="text-muted">por noche</small></p>
+                            <p class="text-success"><i class="bi bi-check-circle"></i> Cancelación gratuita</p>
+                            <p class="text-muted stay-dates">1 may. - 2 may.</p>
+                            <button class="btn btn-primary w-100 btn-reservar">Reservar</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card">
+                        <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_267,q_40,w_400/hotelier-images/77/a7/48fd9da7a5b1c851decd20102a31ba5128bcd74f92d146e61f30593fad4d.jpeg"
+                             class="card-img-top" alt="Mercure Ariosto Lima">
+                        <div class="card-body">
+                            <h5 class="card-title">Mercure Ariosto Lima</h5>
+                            <p class="text-muted">9.0 - Excelente (1996)</p>
+                            <p class="text-muted"><i class="bi bi-geo-alt"></i> Lima, Perú</p>
+                            <span class="badge bg-danger" data-bs-toggle="tooltip"
+                                  title="Esta propiedad es un 10% más económica que nuestra previsión de precio, que se basa en el precio promedio de la propiedad en el que hicieron clic los usuarios de trivago en los últimos seis meses, ajustado por temporada.">
+                                    20% menos de lo habitual
+                                </span>
+                            <p class="mt-2">S/ 255 <small class="text-muted">por noche</small></p>
+                            <p class="text-success"><i class="bi bi-check-circle"></i> Cancelación gratuita</p>
+                            <p class="text-muted stay-dates">1 may. - 15 may.</p>
+                            <button class="btn btn-primary w-100 btn-reservar">Reservar</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card">
+                        <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_267,q_40,w_400/hotelier-images/32/3a/22ab47cc3da5ced4b2c2218ee2b370fabd1ccf39dae8b92407e2be58d3ea.jpeg"
+                             class="card-img-top" alt="Senator Barajas">
+                        <div class="card-body">
+                            <h5 class="card-title">Senator Barajas</h5>
+                            <p class="text-muted">7.6 - Bueno (18463)</p>
+                            <p class="text-muted"><i class="bi bi-geo-alt"></i> Madrid, España</p>
+                            <span class="badge bg-danger" data-bs-toggle="tooltip"
+                                  title="Esta propiedad es un 10% más económica que nuestra previsión de precio, que se basa en el precio promedio de la propiedad en el que hicieron clic los usuarios de trivago en los últimos seis meses, ajustado por temporada.">
+                                    10% menos de lo habitual
+                                </span>
+                            <p class="mt-2">S/ 535 <small class="text-muted">por noche</small></p>
+                            <p class="text-success"><i class="bi bi-check-circle"></i> Cancelación gratuita</p>
+                            <p class="text-muted stay-dates">6 may. - 10 may.</p>
+                            <button class="btn btn-primary w-100 btn-reservar">Reservar</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<!-- Reservas -->
+<section class="reservations-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Tus Reservas</h2>
+
+        <h3>Reservas Activas</h3>
+        <div id="reservas-activas">
+            <div class="card-reserva p-3 mb-3 bg-white rounded" style="display: none;">
+                <div class="card-body">
+                    <h5 class="nombre-habitacion">[Nombre habitación]</h5>
+                    <p><strong>Fecha de reserva:</strong> <span class="fecha-reserva">[Fecha]</span></p>
+                    <p><strong>Fechas de estadía:</strong> <span class="fechas-estadia">[Fechas]</span></p>
+                    <p class="status text-success">Activa</p>
+                    <button type="button" class="btn btn-danger btn-accion">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="mt-4">Reservas Pasadas</h3>
+        <div id="reservas-pasadas">
+            <div class="card-reserva p-3 mb-3 bg-white rounded" style="display: none;">
+                <div class="card-body">
+                    <h5 class="nombre-habitacion">[Nombre habitación]</h5>
+                    <p><strong>Fecha de reserva:</strong> <span class="fecha-reserva">[Fecha]</span></p>
+                    <p><strong>Fechas de estadía:</strong> <span class="fechas-estadia">[Fechas]</span></p>
+                    <p class="status text-secondary">Pasada</p>
+                    <button type="button" class="btn btn-primary btn-accion">Dejar Reseña</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>
