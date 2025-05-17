@@ -10,7 +10,11 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-
+<!-- Selector de idioma -->
+<div class="container mt-2 mb-2 text-end">
+    <a th:href="@{/public/index(lang='es')}" class="me-2">ES</a>
+    <a th:href="@{/public/index(lang='en')}">EN</a>
+</div>
 <!-- Header -->
 <header class="container-fluid border-bottom py-2">
     <div class="container d-flex justify-content-between align-items-center">
@@ -21,11 +25,10 @@
             </a>
         </div>
         <div class="d-flex align-items-center gap-3">
-            <button class="btn btn-outline-primary btn-sm">Favoritos</button>
-            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
-                Iniciar sesión
-            </button>          
-            <button class="btn btn-light btn-sm border"><i class="bi bi-list"></i> Menú</button>
+            <button class="btn btn-outline-primary btn-sm" th:text="#{label.favorites}">Favoritos</button>
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal"
+                    th:text="#{label.login}">Iniciar sesión</button>
+            <button class="btn btn-light btn-sm border"><i class="bi bi-list"></i> <span th:text="#{label.menu}">Menú</span></button>
         </div>
     </div>
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -36,11 +39,11 @@
                     <div class="mx-auto text-center w-100">
                         <img src="/img/IMG45.png" alt="Dinnra Logo" style="width: 100px; height: 100px; object-fit: cover; border-radius: 12px;">
                     </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" th:attr="aria-label=#{label.close}"></button>
                 </div>
 
                 <div class="modal-body">
-                    <h2 class="text-center mb-4">Accede a más ahorros como socio</h2>
+                    <h2 class="text-center mb-4" th:text="#{label.login_title}">Accede a más ahorros como socio</h2>
                     <!-- Botones de Login Social -->
                     <div class="social-login mb-4">
                         <div class="row g-2">
@@ -64,28 +67,28 @@
                     <!-- Divider -->
                     <div class="position-relative text-center mb-4">
                         <hr>
-                        <span style="position: absolute; top: -10px; background-color: #fff; padding: 0 10px; color: #777;">O</span>
+                        <span style="..." th:text="#{label.or}">O</span>
                     </div>
                     <!-- Formulario de Login -->
                     <form>
                         <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                            <input type="email" class="form-control" th:placeholder="#{label.email}" required>
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control" placeholder="Contraseña" required>
+                            <input type="password" class="form-control" h:placeholder="#{label.password}" required>
                         </div>
                         <div class="mb-3 d-flex justify-content-between align-items-center">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="rememberMe">
-                                <label class="form-check-label" for="rememberMe">Recordarme</label>
+                                <label ... th:text="#{label.remember_me}">Recordarme</label>
                             </div>
-                            <a href="#" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+                            <a ... th:text="#{label.forgot_password}">¿Olvidaste tu contraseña?</a>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+                        <button ... th:text="#{label.login}">Iniciar sesión</button>
                     </form>
                 </div>
                 <div class="modal-footer border-0 justify-content-center">
-                    <small>Al iniciar sesión, aceptas nuestro <a href="#">Aviso de privacidad</a> y <a href="#">Términos de uso</a>.</small>
+                    <small>Al iniciar sesión, aceptas nuestro <span th:text="#{label.privacy_notice}">Aviso de privacidad</span> y <span th:text="#{label.terms_of_use}">Términos de uso</span>
                 </div>
             </div>
         </div>
@@ -95,16 +98,16 @@
 <!-- Banner -->
 <section id="banner-principal" class="py-5 bg-light">
     <div class="container d-flex flex-column align-items-center justify-content-center text-center" style="min-height: 300px;">
-        <h2 class="fw-bold">Disfruta de los descuentos de usar Dinnra al reservar un hotel</h2>
-        <p class="text-muted">Con hoteles alrededor de todo el mundo!</p>
+        <h2 class="fw-bold" th:text="#{label.banner_title}">Disfruta de los descuentos de usar Dinnra al reservar un hotel</h2>
+        <p class="text-muted" th:text="#{label.banner_subtitle}">Con hoteles alrededor de todo el mundo!</p>
         <form class="row g-2 justify-content-center mt-4" th:action="@{/usuario/usuario_reservar_habitacion}" method="get">
             <!-- Lugar de interés -->
             <div class="col-md-3 position-relative">
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
-                    <input class="form-control dropdown-toggle" type="text" placeholder="Lugar de interés" id="lugarInteres" data-bs-toggle="dropdown" aria-expanded="false">
+                    <input class="form-control dropdown-toggle" type="text" th:placeholder="#{label.search}" id="lugarInteres" data-bs-toggle="dropdown" aria-expanded="false">
                     <ul class="dropdown-menu w-100" aria-labelledby="lugarInteres">
-                        <li class="dropdown-header">Lugares buscados recientemente</li>
+                        <li class="dropdown-header" th:text="#{label.recent_searches}">Lugares buscados recientemente</li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-geo-alt"></i> Paracas - Ica, Perú</a></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-geo-alt"></i> Lima - Lima, Perú</a></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-geo-alt"></i> Zorritos - Tumbes, Perú</a></li>
@@ -130,12 +133,12 @@
             <div class="col-md-3">
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-people"></i></span>
-                    <input class="form-control" type="text" placeholder="2 huéspedes, 1 habitación">
+                    <input class="form-control" type="text" th:placeholder="#{label.guests_rooms}">
                 </div>
             </div>
             <!-- Botón de búsqueda -->
             <div class="col-md-2">
-                <button class="btn btn-primary w-100">Buscar</button>
+                <button class="btn btn-primary w-100" th:text="#{label.search}">Buscar</button>
             </div>
         </form>
     </div>
@@ -149,24 +152,24 @@
             <div class="col-md-4">
                 <div class="card p-3 border-0 shadow-sm">
                     <i class="bi bi-lightning-charge text-primary fs-1"></i>
-                    <h5 class="mt-3">Busca rápido</h5>
-                    <p class="text-muted">Busca fácilmente entre millones de hoteles en segundos.</p>
+                    <h5 class="mt-3" th:text="#{benefit.fast}">Busca rápido</h5>
+                    <p class="text-muted" th:text="#{benefit.fast.desc}">Busca fácilmente entre millones de hoteles en segundos.</p>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="card p-3 border-0 shadow-sm">
                     <i class="bi bi-shield-check text-primary fs-1"></i>
-                    <h5 class="mt-3">Compara con confianza</h5>
-                    <p class="text-muted">Compara precios de hotel de más de 100 páginas web al mismo tiempo.</p>
+                    <h5 class="mt-3" th:text="#{benefit.compare}">Compara con confianza</h5>
+                    <p class="text-muted" th:text="#{benefit.compare.desc}">Compara precios de hotel de más de 100 páginas web al mismo tiempo.</p>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="card p-3 border-0 shadow-sm">
                     <i class="bi bi-piggy-bank text-primary fs-1"></i>
-                    <h5 class="mt-3">Ahorra a lo grande</h5>
-                    <p class="text-muted">Descubre increíbles ofertas en nuestras páginas asociadas.</p>
+                    <h5 class="mt-3" th:text="#{benefit.save}">Ahorra a lo grande</h5>
+                    <p class="text-muted" th:text="#{benefit.save.desc}">Descubre increíbles ofertas en nuestras páginas asociadas.</p>
                 </div>
             </div>
         </div>
@@ -176,7 +179,7 @@
 <!-- Destacadas -->
 <section id="ofertas-hoteles" class="py-5">
     <div class="container">
-        <h2 class="text-center mb-4">Excelentes ofertas de hotel del momento</h2>
+        <h2 class="text-center mb-4" th:text="#{offers.title}">Excelentes ofertas de hotel del momento</h2>
         <div class="row">
 
             <div class="col-md-4">
@@ -261,7 +264,7 @@
                 <div class="row">
 
                     <div class="col-md-3">
-                        <a href="offers.html" class="text-decoration-none">
+                        <a th:href="@{/usuario/usuario_reservar_habitacion}" class="text-decoration-none">
                             <div class="card">
                                 <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/14/73/14734_v10.jpeg" class="card-img-top" alt="Nueva York">
                                 <div class="card-body">
@@ -274,7 +277,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <a href="offers.html" class="text-decoration-none">
+                        <a th:href="@{/usuario/usuario_reservar_habitacion}" class="text-decoration-none">
                             <div class="card">
                                 <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/66/63/66633_v76.jpeg" class="card-img-top" alt="Cuzco">
                                 <div class="card-body">
@@ -287,7 +290,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <a href="offers.html" class="text-decoration-none">
+                        <a th:href="@{/usuario/usuario_reservar_habitacion}" class="text-decoration-none">
                             <div class="card">
                                 <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/66/62/66629_v74.jpeg" class="card-img-top" alt="Arequipa">
                                 <div class="card-body">
@@ -300,7 +303,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <a href="offers.html" class="text-decoration-none">
+                        <a th:href="@{/usuario/usuario_reservar_habitacion}" class="text-decoration-none">
                             <div class="card">
                                 <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/66/64/66640_v75.jpeg" class="card-img-top" alt="Lima">
                                 <div class="card-body">
@@ -318,7 +321,7 @@
                 <div class="row">
 
                     <div class="col-md-3">
-                        <a href="offers.html" class="text-decoration-none">
+                        <a th:href="@{/usuario/usuario_reservar_habitacion}" class="text-decoration-none">
                             <div class="card">
                                 <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/66/60/66607_v74.jpeg" class="card-img-top" alt="Machu Picchu">
                                 <div class="card-body">
@@ -331,7 +334,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <a href="offers.html" class="text-decoration-none">
+                        <a th:href="@{/usuario/usuario_reservar_habitacion}" class="text-decoration-none">
                             <div class="card">
                                 <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/14/03/140301_v72.jpeg" class="card-img-top" alt="Paracas">
                                 <div class="card-body">
@@ -343,7 +346,7 @@
                         </a>
                     </div>
                     <div class="col-md-3">
-                        <a href="offers.html" class="text-decoration-none">
+                        <a th:href="@{/usuario/usuario_reservar_habitacion}" class="text-decoration-none">
                             <div class="card">
                                 <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/15/35/15353_v78.jpeg" class="card-img-top" alt="Paracas">
                                 <div class="card-body">
@@ -355,7 +358,7 @@
                         </a>
                     </div>
                     <div class="col-md-3">
-                        <a href="offers.html" class="text-decoration-none">
+                        <a th:href="@{/usuario/usuario_reservar_habitacion}" class="text-decoration-none">
                             <div class="card">
                                 <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/66/62/66627_v72.jpeg" class="card-img-top" alt="Paracas">
                                 <div class="card-body">
@@ -379,23 +382,22 @@
             <!-- info -->
             <div class="col-md-4">
                 <h5 class="fw-bold">Dinnra</h5>
-                <p class="text-muted">Somos la mejor página de hoteles 💪</p>
+                <p class="text-muted" th:text="#{label.best_hotel_page}">Somos la mejor página de hoteles 💪</p>
             </div>
             <!-- enlaces -->
             <div class="col-md-4">
-                <h5 class="fw-bold">Enlaces 
-                </h5>
+                <h5 class="fw-bold" th:text="#{label.links}">Enlaces</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-decoration-none text-muted">Acerca de nosotros</a></li>
-                    <li><a href="#" class="text-decoration-none text-muted">Política de privacidad</a></li>
-                    <li><a th:href="@{/usuario/usuario_libro_reclamaciones}" class="text-decoration-none text-muted">Libro de reclamaciones</a></li>
-                    <li><a href="#" class="text-decoration-none text-muted">Términos y condiciones</a></li>
-                    <li><a th:href="@{/public/contacto}" class="text-decoration-none text-muted">Contáctanos</a></li>
+                    <li><a href="#" class="text-decoration-none text-muted" th:text="#{label.about_us}">Acerca de nosotros</a></li>
+                    <li><a href="#" class="text-decoration-none text-muted" th:text="#{label.privacy_policy}">Política de privacidad</a></li>
+                    <li><a th:href="@{/usuario/usuario_libro_reclamaciones}" class="text-decoration-none text-muted" th:text="#{label.claim_book}">Libro de reclamaciones</a></li>
+                    <li><a href="#" class="text-decoration-none text-muted" th:text="#{label.terms_and_conditions}">Términos y condiciones</a></li>
+                    <li><a th:href="@{/public/contacto}" class="text-decoration-none text-muted" th:text="#{label.contact_us}">Contáctanos</a></li>
                 </ul>
             </div>
             <!-- redes sociales -->
             <div class="col-md-4">
-                <h5 class="fw-bold">Síguenos</h5>
+                <h5 class="fw-bold" th:text="#{label.follow_us}">Síguenos</h5>
                 <div class="d-flex gap-3">
                     <a href="https://www.facebook.com/" class="text-muted"><i class="bi bi-facebook fs-4"></i></a>
                     <a href="https://x.com/home?lang=es" class="text-muted"><i class="bi bi-twitter fs-4"></i></a>
@@ -406,8 +408,8 @@
         </div>
     </div>
     <div class="text-center mt-4">
-            <p class="text-muted mb-0">&copy; 2025 Dinnra. Todos los derechos reservados.</p>
-        </div>
+        <p class="text-muted mb-0">&copy; 2025 Dinnra. <span th:text="#{label.footer_rights}">Todos los derechos reservados.</span></p>
+    </div>
 </footer>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
