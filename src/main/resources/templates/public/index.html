@@ -188,15 +188,18 @@
                         <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_267,q_40,w_400/hotelier-images/2f/b5/c63258f974733a7cf501f9df3f4f7df465cf2b59865e1cb997ab5a9666a2.jpeg" class="card-img-top" alt="Casa Andina Select Zorritos">
                         <div class="card-body">
                             <h5 class="card-title">Casa Andina Select Zorritos</h5>
-                            <p class="text-muted">8.9 - Excelente (5274)</p>
+                            <p class="text-muted" th:text="#{label.qualification.Tumbes}">8.9 - Excelente (5274)</p>
                             <p class="text-muted"><i class="bi bi-geo-alt"></i> Tumbes, Perú</p>
-                            <span class="badge bg-danger" data-bs-toggle="tooltip" title="Esta propiedad es un 10% más económica que nuestra previsión de precio, que se basa en el precio promedio de la propiedad en el que hicieron clic los usuarios de trivago en los últimos seis meses, ajustado por temporada.">
+                            <span class="badge bg-danger"
+                                  data-bs-toggle="tooltip"
+                                  th:title="#{label.economic.10.tooltip}"
+                                  th:text="#{label.economic.10}">
                                 10% menos de lo habitual
                             </span>
-                            <p class="mt-2">S/ 520 <small class="text-muted">por noche</small></p>
-                            <p class="text-success"><i class="bi bi-check-circle"></i> Cancelación gratuita</p>
+                            <p class="mt-2">S/ 520 <small class="text-muted" th:text="#{label.per_night}">por noche</small></p>
+                            <p class="text-success"><i class="bi bi-check-circle"></i> <span th:text="#{label.free_cancellation}">Cancelación gratuita</span></p>
                             <p class="text-muted">1 may. - 2 may.</p>
-                            <a href="offers.html" class="btn btn-primary w-100">Consultar oferta</a>
+                            <a href="offers.html" class="btn btn-primary w-100" th:text="#{label.consult_offer}">Consultar oferta</a>
                         </div>
                     </div>
                 </a>
@@ -208,15 +211,18 @@
                         <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_267,q_40,w_400/hotelier-images/77/a7/48fd9da7a5b1c851decd20102a31ba5128bcd74f92d146e61f30593fad4d.jpeg" class="card-img-top" alt="Mercure Ariosto Lima">
                         <div class="card-body">
                             <h5 class="card-title">Mercure Ariosto Lima</h5>
-                            <p class="text-muted">9.0 - Excelente (1996)</p>
+                            <p class="text-muted" th:text="#{label.qualification.Lima}">9.0 - Excelente (1996)</p>
                             <p class="text-muted"><i class="bi bi-geo-alt"></i> Lima, Perú</p>
-                            <span class="badge bg-danger" data-bs-toggle="tooltip" title="Esta propiedad es un 10% más económica que nuestra previsión de precio, que se basa en el precio promedio de la propiedad en el que hicieron clic los usuarios de trivago en los últimos seis meses, ajustado por temporada.">
-                                20% menos de lo habitual
+                            <span class="badge bg-danger"
+                                  data-bs-toggle="tooltip"
+                                  th:title="#{label.economic.20.tooltip}"
+                                  th:text="#{label.economic.20}">
+                                 20% menos de lo habitual
                             </span>
-                            <p class="mt-2">S/ 255 <small class="text-muted">por noche</small></p>
-                            <p class="text-success"><i class="bi bi-check-circle"></i> Cancelación gratuita</p>
+                            <p class="mt-2">S/ 255 <small class="text-muted" th:text="#{label.per_night}">por noche</small></p>
+                            <p class="text-success"><i class="bi bi-check-circle"></i> <span th:text="#{label.free_cancellation}">Cancelación gratuita</span></p>
                             <p class="text-muted">1 may. - 15 may.</p>
-                            <a href="offers.html" class="btn btn-primary w-100">Consultar oferta</a>
+                            <a href="offers.html" class="btn btn-primary w-100" th:text="#{label.consult_offer}">Consultar oferta</a>
                         </div>
                     </div>
                 </a>
@@ -228,15 +234,18 @@
                         <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_267,q_40,w_400/hotelier-images/32/3a/22ab47cc3da5ced4b2c2218ee2b370fabd1ccf39dae8b92407e2be58d3ea.jpeg" class="card-img-top" alt="Senator Barajas">
                         <div class="card-body">
                             <h5 class="card-title">Senator Barajas</h5>
-                            <p class="text-muted">7.6 - Bueno (18463)</p>
+                            <p class="text-muted" th:text="#{label.qualification.Madrid}">7.6 - Bueno (18463)</p>
                             <p class="text-muted"><i class="bi bi-geo-alt"></i> Madrid, España</p>
-                            <span class="badge bg-danger" data-bs-toggle="tooltip" title="Esta propiedad es un 10% más económica que nuestra previsión de precio, que se basa en el precio promedio de la propiedad en el que hicieron clic los usuarios de trivago en los últimos seis meses, ajustado por temporada.">
+                            <span class="badge bg-danger"
+                                  data-bs-toggle="tooltip"
+                                  th:title="#{label.economic.10.tooltip}"
+                                  th:text="#{label.economic.10}">
                                 10% menos de lo habitual
                             </span>
-                            <p class="mt-2">S/ 535 <small class="text-muted">por noche</small></p>
-                            <p class="text-success"><i class="bi bi-check-circle"></i> Cancelación gratuita</p>
+                            <p class="mt-2">S/ 535 <small class="text-muted" th:text="#{label.per_night}">por noche</small></p>
+                            <p class="text-success"><i class="bi bi-check-circle"></i> <span th:text="#{label.free_cancellation}">Cancelación gratuita</span></p>
                             <p class="text-muted">6 may. - 10 may.</p>
-                            <a href="offers.html" class="btn btn-primary w-100">Consultar oferta</a>
+                            <a href="offers.html" class="btn btn-primary w-100" th:text="#{label.consult_offer}">Consultar oferta</a>
                         </div>
                     </div>
                 </a>
@@ -248,13 +257,13 @@
 <!-- Búsquedas destacadas -->
 <section id="busquedas-destacadas" class="py-5">
     <div class="container">
-        <h2 class="text-center mb-4">Búsquedas destacadas</h2>
+        <h2 class="text-center mb-4" th:text="#{featured.title}">Búsquedas destacadas</h2>
         <ul class="nav nav-tabs justify-content-center mb-4" id="busquedasTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="ciudades-tab" data-bs-toggle="tab" data-bs-target="#ciudades" type="button" role="tab" aria-controls="ciudades" aria-selected="true">Ciudades</button>
+                <button class="nav-link active" id="ciudades-tab" data-bs-toggle="tab" data-bs-target="#ciudades" type="button" role="tab" aria-controls="ciudades" aria-selected="true" th:text="#{tab.cities}">Ciudades</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="destinos-tab" data-bs-toggle="tab" data-bs-target="#destinos" type="button" role="tab" aria-controls="destinos" aria-selected="false">Destinos</button>
+                <button class="nav-link" id="destinos-tab" data-bs-toggle="tab" data-bs-target="#destinos" type="button" role="tab" aria-controls="destinos" aria-selected="false" th:text="#{tab.destinations}">Destinos</button>
             </li>
         </ul>
 
@@ -268,9 +277,9 @@
                             <div class="card">
                                 <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/14/73/14734_v10.jpeg" class="card-img-top" alt="Nueva York">
                                 <div class="card-body">
-                                    <h5 class="card-title">Nueva York</h5>
-                                    <p class="text-muted">2903 hoteles</p>
-                                    <p class="text-muted">S/ 1641 prom.</p>
+                                    <h5 class="card-title" th:text="#{city.ny}">Nueva York</h5>
+                                    <p class="text-muted" th:text="#{city.ny.hotels}">2903 hoteles</p>
+                                    <p class="text-muted" th:text="#{city.ny.price}">S/ 1641 prom.</p>
                                 </div>
                             </div>
                         </a>
@@ -281,9 +290,9 @@
                             <div class="card">
                                 <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/66/63/66633_v76.jpeg" class="card-img-top" alt="Cuzco">
                                 <div class="card-body">
-                                    <h5 class="card-title">Cuzco</h5>
-                                    <p class="text-muted">1,629 hoteles</p>
-                                    <p class="text-muted">S/ 313 prom.</p>
+                                    <h5 class="card-title" th:text="#{city.cuzco}">Cuzco</h5>
+                                    <p class="text-muted" th:text="#{city.cuzco.hotels}">1,629 hoteles</p>
+                                    <p class="text-muted" th:text="#{city.cuzco.price}">S/ 313 prom.</p>
                                 </div>
                             </div>
                         </a>
@@ -294,9 +303,9 @@
                             <div class="card">
                                 <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/66/62/66629_v74.jpeg" class="card-img-top" alt="Arequipa">
                                 <div class="card-body">
-                                    <h5 class="card-title">Arequipa</h5>
-                                    <p class="text-muted">632 hoteles</p>
-                                    <p class="text-muted">S/ 192 prom.</p>
+                                    <h5 class="card-title" th:text="#{city.arequipa}">Arequipa</h5>
+                                    <p class="text-muted" th:text="#{city.arequipa.hotels}">632 hoteles</p>
+                                    <p class="text-muted" th:text="#{city.arequipa.price}">S/ 192 prom.</p>
                                 </div>
                             </div>
                         </a>
@@ -307,9 +316,9 @@
                             <div class="card">
                                 <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/66/64/66640_v75.jpeg" class="card-img-top" alt="Lima">
                                 <div class="card-body">
-                                    <h5 class="card-title">Lima</h5>
-                                    <p class="text-muted">999 hoteles</p>
-                                    <p class="text-muted">S/ 244 prom.</p>
+                                    <h5 class="card-title" th:text="#{city.lima}">Lima</h5>
+                                    <p class="text-muted" th:text="#{city.lima.hotels}">999 hoteles</p>
+                                    <p class="text-muted" th:text="#{city.lima.price}">S/ 244 prom.</p>
                                 </div>
                             </div>
                         </a>
@@ -325,9 +334,9 @@
                             <div class="card">
                                 <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/66/60/66607_v74.jpeg" class="card-img-top" alt="Machu Picchu">
                                 <div class="card-body">
-                                    <h5 class="card-title">Machu Picchu</h5>
-                                    <p class="text-muted">150 hoteles</p>
-                                    <p class="text-muted">S/ 500 prom.</p>
+                                    <h5 class="card-title" th:text="#{dest.machu}">Machu Picchu</h5>
+                                    <p class="text-muted" th:text="#{dest.machu.hotels}">150 hoteles</p>
+                                    <p class="text-muted" th:text="#{dest.machu.price}">S/ 500 prom.</p>
                                 </div>
                             </div>
                         </a>
@@ -338,9 +347,9 @@
                             <div class="card">
                                 <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/14/03/140301_v72.jpeg" class="card-img-top" alt="Paracas">
                                 <div class="card-body">
-                                    <h5 class="card-title">Paracas</h5>
-                                    <p class="text-muted">137 hoteles</p>
-                                    <p class="text-muted">S/ 312 prom.</p>
+                                    <h5 class="card-title" th:text="#{dest.paracas}">Paracas</h5>
+                                    <p class="text-muted" th:text="#{dest.paracas.hotels}">137 hoteles</p>
+                                    <p class="text-muted" th:text="#{dest.paracas.price}">S/ 312 prom.</p>
                                 </div>
                             </div>
                         </a>
@@ -348,11 +357,11 @@
                     <div class="col-md-3">
                         <a th:href="@{/usuario/usuario_reservar_habitacion}" class="text-decoration-none">
                             <div class="card">
-                                <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/15/35/15353_v78.jpeg" class="card-img-top" alt="Paracas">
+                                <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/15/35/15353_v78.jpeg" class="card-img-top" alt="Aruba">
                                 <div class="card-body">
-                                    <h5 class="card-title">Aruba</h5>
-                                    <p class="text-muted">550 hoteles</p>
-                                    <p class="text-muted">S/ 779 prom.</p>
+                                    <h5 class="card-title" th:text="#{dest.aruba}">Aruba</h5>
+                                    <p class="text-muted" th:text="#{dest.aruba.hotels}">550 hoteles</p>
+                                    <p class="text-muted" th:text="#{dest.aruba.price}">S/ 779 prom.</p>
                                 </div>
                             </div>
                         </a>
@@ -360,11 +369,11 @@
                     <div class="col-md-3">
                         <a th:href="@{/usuario/usuario_reservar_habitacion}" class="text-decoration-none">
                             <div class="card">
-                                <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/66/62/66627_v72.jpeg" class="card-img-top" alt="Paracas">
+                                <img src="https://imgcy.trivago.com/c_fill,d_dummy.jpeg,e_sharpen:60,f_auto,h_258,q_auto,w_258/categoryimages/66/62/66627_v72.jpeg" class="card-img-top" alt="Huaraz">
                                 <div class="card-body">
-                                    <h5 class="card-title">Huaraz</h5>
-                                    <p class="text-muted">242 hoteles</p>
-                                    <p class="text-muted">S/ 186 prom.</p>
+                                    <h5 class="card-title" th:text="#{dest.huaraz}">Huaraz</h5>
+                                    <p class="text-muted" th:text="#{dest.huaraz.hotels}">242 hoteles</p>
+                                    <p class="text-muted" th:text="#{dest.huaraz.price}">S/ 186 prom.</p>
                                 </div>
                             </div>
                         </a>
