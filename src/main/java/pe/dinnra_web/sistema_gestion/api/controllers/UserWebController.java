@@ -1,14 +1,26 @@
 package pe.dinnra_web.sistema_gestion.api.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pe.dinnra_web.sistema_gestion.api.model.dto.response.RoomResponse;
+import pe.dinnra_web.sistema_gestion.api.service.impl.RoomServiceImpl;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/usuario")
 
 public class UserWebController {
-    @GetMapping("/usuario_dejar_review")
+
+    @Autowired
+    private RoomServiceImpl roomService;
+
+    @GetMapping("/review")
     public String dejar_review(){
         return "usuario/dejar_review";
     }
@@ -43,9 +55,11 @@ public class UserWebController {
         return "usuario/sugerencias";
     }
 
-    @GetMapping("/usuario_ver_habitaciones")
-    public String ver_habitaciones(){
-        return "usuario/ver_habitaciones";
+    @GetMapping("/rooms")
+    public String ver_habitaciones(Model model){
+        List<RoomResponse> rooms = roomService.findAll();
+        model.addAttribute("rooms", rooms);
+        return "usuario/habitaciones";
     }
 }
 

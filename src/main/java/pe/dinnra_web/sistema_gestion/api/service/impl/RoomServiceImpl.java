@@ -14,6 +14,8 @@ import pe.dinnra_web.sistema_gestion.api.model.entity.Room;
 import pe.dinnra_web.sistema_gestion.api.repository.RoomRepository;
 import pe.dinnra_web.sistema_gestion.api.service.RoomService;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class RoomServiceImpl implements RoomService {
@@ -40,6 +42,13 @@ public class RoomServiceImpl implements RoomService {
     public Page<RoomResponse> findAll(Pageable pageable) {
         return roomRepository.findAll(pageable)
                 .map(roomMapper::toRoomResponse);
+    }
+
+    @Override
+    public List<RoomResponse> findAll(){
+        return roomRepository.findAll()
+                .stream().map(roomMapper::toRoomResponse)
+                .toList();
     }
 
     @Override

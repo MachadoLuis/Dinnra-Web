@@ -2,6 +2,7 @@ package pe.dinnra_web.sistema_gestion.api.model.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;
+import pe.dinnra_web.sistema_gestion.api.model.entity.Position;
 import pe.dinnra_web.sistema_gestion.api.model.enums.Gender;
 
 import java.time.LocalDate;

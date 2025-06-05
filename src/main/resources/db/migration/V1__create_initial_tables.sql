@@ -32,7 +32,7 @@ CREATE TABLE employees (
     CONSTRAINT PK_employee PRIMARY KEY (id_employee),
     CONSTRAINT FK_employee_position FOREIGN KEY (id_position)
     REFERENCES positions (id_position)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE CASCADE,
     CONSTRAINT UQ_employee_email UNIQUE (employee_email),
     CONSTRAINT UQ_employee_phone UNIQUE (employee_phone),
@@ -40,28 +40,6 @@ CREATE TABLE employees (
     -- INDEXES
     INDEX idx_employee_names_surnames (employee_names, employee_surnames),
     INDEX idx_employee_email (employee_email)
-
-);
-
--- Tabla de usuarios para empleados
-CREATE TABLE user_employees (
-
-    id_user_employee BIGINT UNSIGNED AUTO_INCREMENT,
-    id_employee BIGINT UNSIGNED NOT NULL,
-    user_employee_username VARCHAR(50) NOT NULL,
-    user_employee_password VARCHAR(60) NOT NULL,
-    active BOOLEAN DEFAULT TRUE,
-
-    -- CONSTRAINTS
-    CONSTRAINT PK_user_employee PRIMARY KEY (id_user_employee),
-    CONSTRAINT FK_user_employee_employee FOREIGN KEY (id_employee)
-    REFERENCES employees (id_employee)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-    CONSTRAINT UQ_user_employee_username UNIQUE (user_employee_username),
-
-    -- INDEXES
-    INDEX idx_user_employee (user_employee_username)
 
 );
 
@@ -79,7 +57,7 @@ CREATE TABLE clients (
     CONSTRAINT PK_client PRIMARY KEY (id_client),
     CONSTRAINT FK_client_position FOREIGN KEY (id_position)
     REFERENCES positions (id_position)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE CASCADE,
     CONSTRAINT UQ_client_email UNIQUE (client_email),
     CONSTRAINT UQ_client_phone UNIQUE (client_phone),
@@ -90,25 +68,33 @@ CREATE TABLE clients (
 
 );
 
--- Tabla de usuarios para clientes
-CREATE TABLE user_clients (
-
-    id_user_client BIGINT UNSIGNED AUTO_INCREMENT,
-    id_client BIGINT UNSIGNED NOT NULL,
-    user_client_username VARCHAR(50) NOT NULL,
-    user_client_password VARCHAR(60) NOT NULL,
-    active BOOLEAN DEFAULT TRUE,
+-- Tabla de usuarios
+CREATE TABLE users (
+    id_user BIGINT UNSIGNED AUTO_INCREMENT,
+    id_user_client BIGINT UNSIGNED,
+    id_user_employee BIGINT UNSIGNED,
+    user_type ENUM  ('CLIENT', 'EMPLOYEE') NOT NULL,
+    user_username VARCHAR(200) NOT NULL,
+    user_password VARCHAR(255) NOT NULL,
+    user_active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     -- CONSTRAINTS
-    CONSTRAINT PK_user_client PRIMARY KEY (id_user_client),
-    CONSTRAINT FK_user_client_client FOREIGN KEY (id_client)
+    CONSTRAINT PK_id_user PRIMARY KEY (id_user),
+    CONSTRAINT FK_id_user_client FOREIGN KEY (id_user_client)
     REFERENCES clients (id_client)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE CASCADE,
-    CONSTRAINT UQ_user_client_username UNIQUE (user_client_username),
+    CONSTRAINT FK_id_user_employee FOREIGN KEY (id_user_employee)
+    REFERENCES employees (id_employee)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    CONSTRAINT UQ_user_username UNIQUE (user_username),
 
     -- INDEXES
-    INDEX idx_user_client_username (user_client_username)
+    INDEX idx_user_type (user_type),
+    INDEX idx_user_client (id_user_client),
+    INDEX idx_user_employee (id_user_employee)
 
 );
 
@@ -121,6 +107,7 @@ CREATE TABLE rooms (
     room_description TEXT NOT NULL,
     room_capacity INT NOT NULL,
     room_price_per_night DECIMAL(8,2) NOT NULL DEFAULT 0.00,
+    room_img TEXT NOT NULL,
     room_status ENUM('DISPONIBLE', 'OCUPADO', 'MANTENIMIENTO') DEFAULT 'DISPONIBLE',
 
     -- CONSTRAINTS
@@ -150,11 +137,11 @@ CREATE TABLE reservations (
     CONSTRAINT PK_reservation PRIMARY KEY (id_reservation),
     CONSTRAINT FK_reservation_client FOREIGN KEY (id_client)
     REFERENCES clients (id_client)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE CASCADE,
     CONSTRAINT FK_reservation_room FOREIGN KEY (id_room)
     REFERENCES rooms (id_room)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE CASCADE,
 
     -- INDEXES
@@ -189,11 +176,11 @@ CREATE TABLE payments (
     CONSTRAINT PK_payment PRIMARY KEY (id_payment),
     CONSTRAINT FK_payment_reservation FOREIGN KEY (id_reservation)
     REFERENCES reservations (id_reservation)
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
     CONSTRAINT FK_payment_payment_method FOREIGN KEY (id_payment_method)
     REFERENCES payment_methods (id_payment_method)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE CASCADE,
 
     -- INDEXES
@@ -248,15 +235,15 @@ CREATE TABLE service_registrations (
     CONSTRAINT PK_service_registration PRIMARY KEY (id_service_registration),
     CONSTRAINT FK_service_registration_reservation FOREIGN KEY (id_reservation)
     REFERENCES reservations (id_reservation)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE CASCADE,
     CONSTRAINT FK_service_registration_service FOREIGN KEY (id_service)
     REFERENCES services (id_service)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE CASCADE,
     CONSTRAINT FK_service_registration_service_employee FOREIGN KEY (id_service_employee)
     REFERENCES service_employees (id_service_employee)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE CASCADE,
 
     -- INDEXES
@@ -359,7 +346,7 @@ CREATE TABLE contact_service_registrations(
     ON UPDATE CASCADE,
     CONSTRAINT FK_contact_service_registration_employee FOREIGN KEY (id_employee)
     REFERENCES employees (id_employee)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE CASCADE,
 
     -- INDEXES

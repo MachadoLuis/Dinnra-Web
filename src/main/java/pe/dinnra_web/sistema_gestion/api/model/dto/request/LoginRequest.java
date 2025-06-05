@@ -5,8 +5,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Builder
 public class LoginRequest {
 
@@ -15,7 +17,5 @@ public class LoginRequest {
     private String username;
 
     @NotBlank(message = "La contraseña no puede estar vacía")
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@!#%&*-])[A-Za-z\\d@!#%&*-]{8,}$",
-            message = "Debe tener al menos 8 caracteres, una letra, un número y un carácter especial")
     private String password;
 }
