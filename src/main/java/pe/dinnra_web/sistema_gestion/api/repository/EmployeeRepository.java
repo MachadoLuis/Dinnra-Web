@@ -5,4 +5,6 @@ import pe.dinnra_web.sistema_gestion.api.model.entity.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
+    Employee findByIdEmployee(Long idEmployee);
+
 }

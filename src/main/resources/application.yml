@@ -10,7 +10,9 @@ spring:
     url: jdbc:mysql://${MYSQL_SERVER}/dinnra_web_db?createDatabaseIfNotExist=true
     username: ${MYSQL_USER}
     password: ${MYSQL_PASSWORD}
-
+  security:
+    jwt:
+      secret-key: ${SECRET_KEY}
   jpa:
     open-in-view: false
 

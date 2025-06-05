@@ -25,6 +25,9 @@ public class Position {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPosition;
 
+    @Column(name = "position_employee")
+    private Boolean employee;
+
     @Column(name = "position_name")
     private String name;
 

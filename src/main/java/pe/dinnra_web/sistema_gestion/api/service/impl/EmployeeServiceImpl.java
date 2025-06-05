@@ -23,6 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeMapper employeeMapper;
 
     @Override
+    @Transactional
     public EmployeeDetailResponse create(EmployeeRequest request) {
         Employee employee = employeeMapper.toEmployee(request);
         Employee savedEmployee = employeeRepository.save(employee);

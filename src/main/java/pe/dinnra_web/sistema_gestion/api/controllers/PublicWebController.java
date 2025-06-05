@@ -1,30 +1,52 @@
 package pe.dinnra_web.sistema_gestion.api.controllers;
 
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pe.dinnra_web.sistema_gestion.api.model.dto.request.LoginRequest;
+import pe.dinnra_web.sistema_gestion.api.model.entity.User;
+import pe.dinnra_web.sistema_gestion.api.repository.UserRepository;
 
 @Controller
-/* LA RAIZ DEL PROYECTO SERIA http://localhost:8080/public/PAGINA QUE QUIERAS VER */
+@RequiredArgsConstructor
 @RequestMapping("/public")
 public class PublicWebController {
 
-    /* POR CADA HTML QUE TENGAMOS ESTE DEBE TENER UN ENLACE ESTE ES UNO DE PRUEBA
-     * PARA PODER COMPROBAR SI FUNCIONA TIENEN QUE ENTRAR A http://localhost:8080/public/index */
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
     @GetMapping("/index")
-    public String indexPrueba(){
+    public String index_page (){
         return "public/index";
     }
 
-    /* SI TUVIERAN UN HTML LLAMADO PRUEBA EN EL MISMO NIVEL QUE HTML TENDRIAN QUE HACER ESTO */
-    @GetMapping("/contacto")
-    public String contacto(){
-        return "public/contacto";
+    @GetMapping("/success")
+    public String succes(){
+        return "public/success";
     }
 
-    /* SI TUVIERAN UN HTML UN NIVEL DENTRO SE VERIA ASI */
-    @GetMapping("/NIVELDENTRO")
-    public String dentro(){
-        return "carpeta/unniveldentro";
+    @GetMapping("/error")
+    public String error(){
+        return "public/error";
     }
+
+    /*
+    @PostMapping("/login-web")
+    public String loginWeb (@Valid @ModelAttribute LoginRequest loginRequest){
+
+        User user = userRepository.findByUsername(loginRequest.getUsername());
+
+        if (user != null && passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())){
+            return "public/succes";
+        }
+
+        return "public/succes";
+    }*/
+
 }
