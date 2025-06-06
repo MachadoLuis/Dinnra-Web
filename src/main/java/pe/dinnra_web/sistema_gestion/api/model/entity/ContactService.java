@@ -32,9 +32,10 @@ public class ContactService {
     private Client client;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "contact_service_type")
     private ContactServiceType contactServiceType;
 
-    @Column(name = "contact_service_message", columnDefinition = "TEXT")
+    @Column(name = "contact_service_reclaim", columnDefinition = "TEXT")
     private String reclaim;
 
     @CreatedDate

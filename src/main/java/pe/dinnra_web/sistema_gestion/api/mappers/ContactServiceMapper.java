@@ -9,12 +9,12 @@ import pe.dinnra_web.sistema_gestion.api.model.entity.ContactService;
 @Mapper(componentModel = "spring")
 public interface ContactServiceMapper {
     @Mapping(target = "idContactService",ignore = true)
-    @Mapping(target = "createAt",ignore = true)
-    @Mapping(target = "client",source = "idClient")
+    @Mapping(target = "createdAt",ignore = true)
+    @Mapping(target = "client.idClient",source = "idClient")
     ContactService toContactService (ContactServiceRequest request);
 
 
-    @Mapping(target = "clientFullName",source = "client")
+    @Mapping(target = "clientFullName",source = "client.names")
     ContactServiceResponse toContactServiceResponse(ContactService contactService);
 
 }
