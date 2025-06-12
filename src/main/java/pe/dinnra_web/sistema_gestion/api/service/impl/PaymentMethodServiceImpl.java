@@ -1,6 +1,8 @@
 package pe.dinnra_web.sistema_gestion.api.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pe.dinnra_web.sistema_gestion.api.mappers.PaymentMethodMapper;
@@ -11,6 +13,7 @@ import pe.dinnra_web.sistema_gestion.api.repository.PaymentMethodRepository;
 import pe.dinnra_web.sistema_gestion.api.service.PaymentMethodService;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class PaymentMethodServiceImpl implements PaymentMethodService {
 
@@ -32,5 +35,10 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
                 .orElseThrow(() -> new RuntimeException("Método de pago no encontrado con ID: " + idPaymentMethod));
     }
 
-    
+    @Override
+    @Transactional(readOnly = true)
+    public Page<PaymentMethodResponse> findAll(Pageable pageable) {
+        return paymentMethodRepository.findAll(pageable)
+                .map(paymentMethodMapper::toPaymentMethodResponse);
+    }
 }
