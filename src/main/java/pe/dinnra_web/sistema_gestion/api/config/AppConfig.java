@@ -67,6 +67,7 @@ public class AppConfig {
                                 "/api/v1/auth/**",
                                 "/api/v1/auth/validate-auth",
                                 "/api/v1/user/user-client",
+                                "/api/v1/contact-service",
                                 "/api/v1/client",
                                 "/public/**",
                                 "/usuario/**",
