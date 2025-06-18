@@ -1,14 +1,14 @@
 const card = document.getElementById("idRoom");
-const token = localStorage.getItem("token");
+const token = localStorage.getItem("refreshToken");
 card.addEventListener("click", function() {
-    fetch("/api/v1/validate-auth" , {
+    fetch("/api/v1/auth/validate-auth" , {
         method: "GET",
         headers: {"Authorization": `Bearer ${token}`}
 
     })
     .then(response =>{
         if(response.ok){
-            window.location.href = "/usuario/rooms";
+           return window.location.href = "/usuario/rooms";
         }
     })
 })

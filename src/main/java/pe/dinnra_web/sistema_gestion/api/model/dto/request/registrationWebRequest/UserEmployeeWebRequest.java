@@ -10,9 +10,8 @@ import pe.dinnra_web.sistema_gestion.api.model.enums.UserType;
 @Getter
 @Setter
 @Builder
-public class UserEmployeeRequest {
+public class UserEmployeeWebRequest {
 
-    @NotNull(message = "El id de empleado no puede ser null")
     private Long idEmployee;
 
     @NotNull(message = "El tipo de usuario es requerido")
@@ -21,7 +20,7 @@ public class UserEmployeeRequest {
     @NotBlank(message = "La contraseña no puede estar vacia")
     private String password;
 
-    @NotNull
+    @NotNull(message = "El estado de la cuenta es necesario")
     private Boolean active;
 
 }

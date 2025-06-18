@@ -49,7 +49,7 @@ public class Employee {
     @Column(name = "employee_email")
     private String email;
 
-    @Column(columnDefinition = "boolean default true")
+    @Column(name = "active", nullable = false)
     private Boolean active = true;
 
 }

@@ -43,8 +43,8 @@ public class User {
     @Column(name = "user_password")
     private String password;
 
-    @Column(name = "user_active")
-    private Boolean active;
+    @Column(name = "user_active", nullable = false)
+    private Boolean active = true;
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)

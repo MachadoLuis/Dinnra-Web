@@ -9,8 +9,10 @@ import pe.dinnra_web.sistema_gestion.api.exceptions.UserNotFoundException;
 import pe.dinnra_web.sistema_gestion.api.mappers.UserMapper;
 import pe.dinnra_web.sistema_gestion.api.model.dto.request.registrationWebRequest.UserClientRequest;
 import pe.dinnra_web.sistema_gestion.api.model.dto.request.registrationWebRequest.UserEmployeeRequest;
+import pe.dinnra_web.sistema_gestion.api.model.dto.request.registrationWebRequest.UserEmployeeWebRequest;
 import pe.dinnra_web.sistema_gestion.api.model.dto.response.registrationWebResponse.UserResponse;
 import pe.dinnra_web.sistema_gestion.api.model.entity.User;
+import pe.dinnra_web.sistema_gestion.api.repository.EmployeeRepository;
 import pe.dinnra_web.sistema_gestion.api.repository.UserRepository;
 import pe.dinnra_web.sistema_gestion.api.service.UserService;
 import pe.dinnra_web.sistema_gestion.api.util.UserInfo;
@@ -20,12 +22,13 @@ import pe.dinnra_web.sistema_gestion.api.util.UserInfo;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final EmployeeRepository employeeRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
 
     @Override
     public UserResponse createClient(UserClientRequest request) {
-        User user = userMapper.toUserClient(request);
+        User user = userMapper.clientToUser(request);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
         return userMapper.toUserResponse(savedUser);
@@ -33,11 +36,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse createEmployee(UserEmployeeRequest request) {
-        User user = userMapper.toUserEmployee(request);
+        String email = employeeRepository.findByIdEmployee(request.getIdEmployee()).getEmail();
+        User user = userMapper.employeeToUser(request);
+        user.setUsername(email);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
         return userMapper.toUserResponse(savedUser);
     }
+
+    @Override
+    public UserResponse createEmployeeRegistration(UserEmployeeWebRequest request) {
+        String email = employeeRepository.findByIdEmployee(request.getIdEmployee()).getEmail();
+        User user = userMapper.employeeWebToUser(request);
+        user.setUsername(email);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        User savedUSer = userRepository.save(user);
+        return userMapper.toUserResponse(savedUSer);
+    }
+
 
     @Override
     public UserResponse findById(Long idUser) {

@@ -43,8 +43,6 @@ public class RoomController {
         return ResponseEntity.ok(roomService.findAll(pageable));
     }
 
-
-
     @Operation(summary = "Eliminar un cuarto por su ID")
     @DeleteMapping("/{idRoom}")
     private ResponseEntity<Void> deleteById (@PathVariable Long idRoom){

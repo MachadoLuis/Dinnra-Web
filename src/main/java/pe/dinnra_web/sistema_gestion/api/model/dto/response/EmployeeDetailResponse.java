@@ -13,7 +13,7 @@ public class EmployeeDetailResponse {
 
     private Long idEmployee;
 
-    private String positionName;
+    private Position position;
 
     private String names;
 

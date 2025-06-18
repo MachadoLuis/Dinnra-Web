@@ -1,0 +1,95 @@
+.container{
+    padding-bottom: 0.75rem;
+}
+.special-txt{
+    color: #0d6efd;
+}
+
+        /* Estilo personalizado para la estructura */
+.table-row-wrapper {
+    display: flex;
+    flex-direction:column
+    align-items: center;
+    margin-bottom: 8px; /* Espacio entre filas */
+    padding-bottom: 8px;
+}
+
+.table-data-container {
+    flex: 1;
+    display: flex;
+    overflow-x: auto; /* Para tablas responsivas */
+    justify-content: center;
+}
+
+.table-data {
+    border: none;
+    width: 100%;
+    margin-bottom: 0;
+    table-layout: auto;
+}
+
+.table-data th, .table-data td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table-data tbody tr {
+    background-color: transparent;
+}
+
+.table-data tbody tr:hover {
+    background-color: transparent;
+}
+
+.tbl-header{
+    box-shadow: 0px 4px 6px rgba(13, 110, 253, 0.2);
+}
+
+.action-buttons-container {
+    width:fit-content;
+    flex-shrink: 0; /* Evita que se reduzca */
+    display: flex;
+    align-items: center;
+}
+
+.cell-table{
+    font-weight: normal;
+}
+
+.btnTrash{
+    border:none;
+    color: #d30808;
+    width: fit-content;
+    padding: 0;
+}
+
+.btnTrash:hover{
+    background-color:transparent;
+    color: red;
+}
+
+.btnEdit{
+    border:none;
+    color: #0909a5;
+    width: fit-content;
+    padding: 0;
+}
+
+.btnEdit:hover{
+    background-color:transparent;
+    color: blue;
+}
+
+.btns-header{
+    width: 6.25 rem;
+}
+
+.form-control{
+    border: 1px solid black;
+}
+
+.input-radio{
+    cursor:pointer;
+    border-color: black;
+}

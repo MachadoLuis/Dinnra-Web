@@ -38,7 +38,4 @@ public class EmployeeRequest {
     @Pattern(regexp = "^[0-9]{9}$", message = "El teléfono debe tener 9 dígitos")
     private String phone;
 
-    @NotNull(message = "El estado es requerido")
-    private Boolean active;
-
 }

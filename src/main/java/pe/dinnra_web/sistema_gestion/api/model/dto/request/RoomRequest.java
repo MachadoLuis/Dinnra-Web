@@ -31,8 +31,11 @@ public class RoomRequest {
     @NotNull(message = "El precio por noche del cuarto es necesario")
     private BigDecimal pricePerNight;
 
+
     @NotNull(message = "El estado del cuarto es necesario")
     @Enumerated(EnumType.STRING)
     private RoomStatus roomStatus;
 
+    @NotBlank(message = "El src de la imagen no puede ser nula")
+    private String roomImg;
 }

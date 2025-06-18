@@ -14,10 +14,14 @@ public class RoomResponse {
 
     private String name;
 
+    private String description;
+
     private Integer capacity;
 
     private BigDecimal pricePerNight;
 
     private RoomStatus roomStatus;
+
+    private String roomImg;
 
 }

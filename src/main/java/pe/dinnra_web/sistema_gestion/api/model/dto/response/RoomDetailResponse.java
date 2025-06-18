@@ -24,4 +24,6 @@ public class RoomDetailResponse {
 
     private RoomStatus roomStatus;
 
+    private String roomImg;
+
 }

@@ -1,7 +1,7 @@
 document.getElementById("loginForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Evita la recarga de la página
 
-    const formData = new FormData(event.target)
+    const formData = new FormData(event.target);
     fetch("/api/v1/auth/login-web", {
             method: "POST",
             body: formData
@@ -17,12 +17,20 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         localStorage.setItem("token", responseJson.token);
 
         const claimsPosition = responseJson.claims.position;
+        fetch("/api/v1/auth/validate-auth", {
+            method: "GET",
+            headers: {"Authorization": `Bearer ${localStorage.getItem("refreshToken")}`}
+        })
+        .then(response => {
+            if(!response.ok){
+                throw new Error("Error al validar el token")
+            }
+            if(claimsPosition == "Admin"){
+               return window.location.href= "/admin/dash_admin"
+            }
 
-        if(claimsPosition == "Admin"){
-           return window.location.href= "/admin/dash_admin"
-        }
-
-        return window.location.href = "/public/index"
+            return window.location.href = "/public/index"
+        })
 
     })
         .catch(error => {
