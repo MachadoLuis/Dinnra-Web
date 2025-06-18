@@ -44,4 +44,18 @@ public class PositionController {
         return ResponseEntity.ok(positionService.findAll(pageable));
     }
 
+    @Operation(summary = "Actualizar posicion")
+    @PatchMapping("/{idPosition}")
+    private ResponseEntity<PositionResponse> update (@PathVariable Long idPosition, @RequestBody PositionRequest positionRequest){
+
+        return ResponseEntity.ok(positionService.update(idPosition, positionRequest));
+    }
+
+    @Operation(summary = "Eliminar una posicion por su ID")
+    @DeleteMapping("/{idPosition}")
+    private ResponseEntity<Void> deleteById(@PathVariable Long idPosition){
+        positionService.deleteById(idPosition);
+        return ResponseEntity.noContent().build();
+    }
+
 }

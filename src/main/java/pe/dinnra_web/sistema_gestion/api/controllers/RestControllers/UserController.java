@@ -45,4 +45,10 @@ public class UserController {
         return ResponseEntity.ok(userService.findAll(pageable));
     }
 
+    @DeleteMapping("/{idUser}")
+    private ResponseEntity<Void> deleteById (@PathVariable Long idUser){
+
+        return ResponseEntity.noContent().build();
+    }
+
 }

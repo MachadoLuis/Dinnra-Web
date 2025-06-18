@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pe.dinnra_web.sistema_gestion.api.model.dto.response.RoomResponse;
 import pe.dinnra_web.sistema_gestion.api.service.impl.RoomServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller

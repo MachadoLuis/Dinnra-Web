@@ -9,8 +9,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.dinnra_web.sistema_gestion.api.model.dto.request.EmployeePatchRequest;
+import pe.dinnra_web.sistema_gestion.api.model.dto.request.EmployeeRegistrationRequest;
 import pe.dinnra_web.sistema_gestion.api.model.dto.request.EmployeeRequest;
 import pe.dinnra_web.sistema_gestion.api.model.dto.response.EmployeeDetailResponse;
+import pe.dinnra_web.sistema_gestion.api.model.dto.response.EmployeeRegistrationResponse;
 import pe.dinnra_web.sistema_gestion.api.model.dto.response.EmployeeResponse;
 import pe.dinnra_web.sistema_gestion.api.service.impl.EmployeeServiceImpl;
 
@@ -31,6 +34,15 @@ public class EmployeeController {
                 .body(employeeService.create(request));
     };
 
+
+    @Operation(summary = "Crear empleado y usuario para empleado")
+    @PostMapping("/employee-registration")
+    private ResponseEntity<EmployeeRegistrationResponse> create(@Valid @RequestBody EmployeeRegistrationRequest employeeRegistrationRequest){
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(employeeService.createEmployeeRegistration(employeeRegistrationRequest));
+    }
+
     @Operation(summary = "Obtener un empleado por su ID")
     @GetMapping("/{idEmployee}")
     private ResponseEntity<EmployeeDetailResponse> findById (@PathVariable Long idEmployee){
@@ -44,9 +56,9 @@ public class EmployeeController {
     }
 
     @Operation(summary = "Actualizar un empleado")
-    @PutMapping("/{idEmployee}")
+    @PatchMapping("/{idEmployee}")
     private ResponseEntity<EmployeeDetailResponse> update (
-            @PathVariable Long idEmployee, @Valid @RequestBody EmployeeRequest request){
+            @PathVariable Long idEmployee, @Valid @RequestBody EmployeePatchRequest request){
         return ResponseEntity.ok(employeeService.update(idEmployee,request));
     }
 

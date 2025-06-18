@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,9 +78,10 @@
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading bg-primary text-white">Dashboard</div>
+
         <div class="list-group list-group-flush">
-            <a href="crear_empleado.html" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
-                <i class="bi bi-person-plus-fill menu-icon"></i>Crear Empleado
+            <a th:href="@{/admin/employee}" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
+                <i class="bi bi-person-plus-fill menu-icon"></i>Gestionar Empleados
             </a>
             <a href="crear_cliente.html" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
                 <i class="bi bi-people-fill menu-icon"></i>Crear Cliente
@@ -88,7 +89,7 @@
             <a href="crear_habitacion.html" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
                 <i class="bi bi-door-open-fill menu-icon"></i>Crear Habitación
             </a>
-            <a href="crear_posicion.html" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
+            <a th:href="@{/admin/position}" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
                 <i class="bi bi-briefcase-fill menu-icon"></i>Crear Posición
             </a>
             <!-- Aquí puedes agregar más opciones de menú en el futuro -->
@@ -118,13 +119,14 @@
                                 <li><a class="dropdown-item" href="#">Perfil</a></li>
                                 <li><a class="dropdown-item" href="#">Configuración</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+                                <li><a id="clsSession" class="dropdown-item" href="#">Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <iframe id="content-frame" name="content-frame" class="content-area"></iframe>
     </div>
 </div>
 
@@ -155,5 +157,6 @@
         document.querySelector('.list-group-item').classList.add('active');
     };
 </script>
+<script th:src="@{/script/scriptLogout.js}"></script>
 </body>
 </html>

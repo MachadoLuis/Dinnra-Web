@@ -11,11 +11,11 @@ public class EmployeeResponse {
 
     private Long idEmployee;
 
-    private String positionName;
-
     private String surnames;
 
-    private LocalDate birthDate;
+    private String gender;
+
+    private String positionName;
 
     private String email;
 

@@ -44,4 +44,7 @@ public class Room {
     @Enumerated(EnumType.STRING)
     private RoomStatus roomStatus;
 
+    @Column(name = "room_img", columnDefinition = "TEXT")
+    private String roomImg;
+
 }

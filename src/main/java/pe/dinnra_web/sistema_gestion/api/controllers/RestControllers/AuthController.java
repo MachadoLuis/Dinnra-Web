@@ -1,6 +1,7 @@
 package pe.dinnra_web.sistema_gestion.api.controllers.RestControllers;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -67,4 +68,12 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.BAD_GATEWAY).build();
 
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(HttpServletRequest request, HttpServletResponse response) {
+        request.getSession().invalidate();
+        return ResponseEntity.ok().build();
+    }
+
+
 }

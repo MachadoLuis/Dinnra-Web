@@ -2,6 +2,7 @@ package pe.dinnra_web.sistema_gestion.api.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import pe.dinnra_web.sistema_gestion.api.model.dto.request.PositionRequest;
 import pe.dinnra_web.sistema_gestion.api.model.dto.response.PositionResponse;
 import pe.dinnra_web.sistema_gestion.api.model.entity.Position;
@@ -13,5 +14,8 @@ public interface PositionMapper {
     Position toPosition(PositionRequest request);
 
     PositionResponse toPositionResponse(Position entity);
+
+    @Mapping(target = "idPosition", ignore = true)
+    void update (@MappingTarget Position entity, PositionRequest positionRequest);
 
 }

@@ -11,12 +11,16 @@ import pe.dinnra_web.sistema_gestion.api.model.entity.Room;
 public interface RoomMapper {
 
     @Mapping(target = "idRoom", ignore = true)
+    @Mapping(target = "roomImg", source = "roomImg")
     Room toRoom (RoomRequest request);
 
     @Mapping(target = "idRoom", source = "idRoom")
+    @Mapping(target = "roomImg", source = "roomImg")
     RoomDetailResponse toRoomDetailResponse (Room entity);
 
     @Mapping(target = "idRoom", source = "idRoom")
+    @Mapping(target = "roomImg", source = "roomImg")
+    @Mapping(target = "description", source = "description")
     RoomResponse toRoomResponse (Room entity);
 
 }
