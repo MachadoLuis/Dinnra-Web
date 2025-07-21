@@ -3,6 +3,7 @@ package pe.dinnra_web.sistema_gestion.api.controllers.RestControllers;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,11 @@ public class UserController {
     @GetMapping("/{idUser}")
     private ResponseEntity<UserResponse> findUserById(@PathVariable Long idUser){
         return ResponseEntity.ok(userService.findById(idUser));
+    }
+
+    @GetMapping("/reservation/{idUser}")
+    private ResponseEntity<Object> findBySubject(@PathVariable Long idUser){
+        return ResponseEntity.ok(userService.findBySubject(idUser));
     }
 
     @GetMapping

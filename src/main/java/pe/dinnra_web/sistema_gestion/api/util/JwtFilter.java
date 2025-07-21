@@ -2,9 +2,7 @@ package pe.dinnra_web.sistema_gestion.api.util;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,30 +25,25 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        //Cookie[] cookies = request.getCookies();
         String authHead = request.getHeader("Authorization");
-        String token = null;
-        String subject = null;
-        String position = null;
+        try{
+            if (authHead != null && authHead.startsWith("Bearer")){
+                String token = authHead.substring(7);
+                String subject = jwtUtil.extractIdUser(token);
+                String position = jwtUtil.extractPosition(token);
+                User user = userRepository.findByIdUser(Long.valueOf(subject));
+                if (jwtUtil.validateToken(token, user)){
+                    UsernamePasswordAuthenticationToken authToken =
+                            new UsernamePasswordAuthenticationToken(user, null, List.of(new SimpleGrantedAuthority(position)));
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+                }
+            }
+        }catch (Exception e){
+            SecurityContextHolder.clearContext();
 
-        /*if (cookies != null){
-            String cookieToken = jwtUtil.extractTokenFromCookies(cookies);
-        }*/
-
-        if (authHead != null && authHead.startsWith("Bearer")){
-            token = authHead.substring(7);
-            subject = jwtUtil.extractIdUser(token);
-            position = jwtUtil.extractPosition(token);
-        }
-
-        if (subject != null && SecurityContextHolder.getContext().getAuthentication() == null){
-
-            User user = userRepository.findByIdUser(Long.valueOf(subject));
-
-            if (jwtUtil.validateToken(token, user)){
-                UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(user, null, List.of(new SimpleGrantedAuthority(position)));
-                SecurityContextHolder.getContext().setAuthentication(authToken);
+            HttpSession httpSession = request.getSession(false);
+            if (httpSession != null){
+                httpSession.invalidate();
             }
         }
 

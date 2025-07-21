@@ -4,14 +4,11 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import pe.dinnra_web.sistema_gestion.api.model.entity.User;
 
 import javax.crypto.SecretKey;
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,8 +39,7 @@ public class JwtUtil {
                 .issuedAt(new Date(System.currentTimeMillis()))
                 //Fecha en la que el token debe expirar
                 .expiration(new Date(System.currentTimeMillis() + expiration))
-                //Firma del token con un algoritmo y una clave secreta
-                //.signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+                //Firma del token con una clave secreta que usa un algoritmo para ser creada
                 .signWith(key())
                 //Genera el token y lo devuelve como un string
                 .compact();
@@ -56,7 +52,7 @@ public class JwtUtil {
     }
 
     public String generateTokenFromRefreshToken (String refreshToken){
-        Integer expirationToken = /*2minutos*/ 120000;
+        Integer expirationToken = /*1 minuto*/ 60000;
 
         String idUser = extractIdUser(refreshToken);
         String username = extractUsername(refreshToken);

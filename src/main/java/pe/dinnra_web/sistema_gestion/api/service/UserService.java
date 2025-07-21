@@ -11,6 +11,8 @@ import pe.dinnra_web.sistema_gestion.api.util.UserInfo;
 
 public interface UserService {
 
+    <T> T findBySubject (Long idUser);
+
     UserResponse createClient (UserClientRequest request);
 
     UserResponse createEmployee (UserEmployeeRequest request);

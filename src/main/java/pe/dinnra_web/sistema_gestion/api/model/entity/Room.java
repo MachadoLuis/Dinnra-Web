@@ -42,7 +42,7 @@ public class Room {
     private BigDecimal pricePerNight;
 
     @Enumerated(EnumType.STRING)
-    private RoomStatus roomStatus;
+    private RoomStatus roomStatus = RoomStatus.DISPONIBLE;
 
     @Column(name = "room_img", columnDefinition = "TEXT")
     private String roomImg;

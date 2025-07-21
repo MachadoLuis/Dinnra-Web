@@ -83,10 +83,11 @@
             <a th:href="@{/admin/employee}" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
                 <i class="bi bi-person-plus-fill menu-icon"></i>Gestionar Empleados
             </a>
-            <a href="crear_cliente.html" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
+            <!--
+            <a th:href="@{/admin/crear_cliente}" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
                 <i class="bi bi-people-fill menu-icon"></i>Crear Cliente
-            </a>
-            <a href="crear_habitacion.html" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
+            </a>-->
+            <a th:href="@{/admin/room}" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
                 <i class="bi bi-door-open-fill menu-icon"></i>Crear Habitación
             </a>
             <a th:href="@{/admin/position}" target="content-frame" class="list-group-item list-group-item-action" onclick="setActive(this)">
@@ -134,7 +135,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    // Toggle sidebar
     document.getElementById("menu-toggle").addEventListener("click", function(e) {
         e.preventDefault();
         document.querySelector(".wrapper").classList.toggle("toggled");
@@ -158,5 +158,6 @@
     };
 </script>
 <script th:src="@{/script/scriptLogout.js}"></script>
+<script th:src="@{/script/scriptReSendToken.js}"></script>
 </body>
 </html>

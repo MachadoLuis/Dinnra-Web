@@ -6,14 +6,12 @@ import pe.dinnra_web.sistema_gestion.api.model.enums.UserType;
 
 @Getter
 @Builder
-public class UserResponse {
+public class UserEmployeeResponse {
 
     private Long idUser;
 
     private UserType userType;
 
-    private String idClient;
-    
     private String idEmployee;
 
     private String username;

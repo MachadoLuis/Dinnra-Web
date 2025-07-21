@@ -12,6 +12,7 @@ import pe.dinnra_web.sistema_gestion.api.model.dto.request.registrationWebReques
 import pe.dinnra_web.sistema_gestion.api.model.dto.request.registrationWebRequest.UserEmployeeWebRequest;
 import pe.dinnra_web.sistema_gestion.api.model.dto.response.registrationWebResponse.UserResponse;
 import pe.dinnra_web.sistema_gestion.api.model.entity.User;
+import pe.dinnra_web.sistema_gestion.api.model.enums.UserType;
 import pe.dinnra_web.sistema_gestion.api.repository.EmployeeRepository;
 import pe.dinnra_web.sistema_gestion.api.repository.UserRepository;
 import pe.dinnra_web.sistema_gestion.api.service.UserService;
@@ -60,6 +61,17 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(idUser)
                 .map(userMapper::toUserResponse)
                 .orElseThrow(() -> new UserNotFoundException("Usuario no ecnotrado con ID: " + idUser));
+    }
+
+    @Override
+    public <T> T findBySubject(Long idUser) {
+        User user = userRepository.findByIdUser(idUser);
+        if (user.getUserType()== UserType.EMPLOYEE){
+            return (T) userMapper.userToUserEmployee(user);
+        }else{
+            return (T) userMapper.userToUserClient(user);
+        }
+
     }
 
     @Override

@@ -130,8 +130,8 @@ CREATE TABLE reservations (
     id_room BIGINT UNSIGNED NOT NULL,
     reservation_status ENUM('REGISTRADA','ACTIVA', 'CERRADA', 'CANCELADA') DEFAULT 'REGISTRADA',
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    reservation_check_in DATETIME NOT NULL,
-    reservation_check_out DATETIME NOT NULL,
+    reservation_check_in DATETIME,
+    reservation_check_out DATETIME,
 
     -- CONSTRAINTS
     CONSTRAINT PK_reservation PRIMARY KEY (id_reservation),
