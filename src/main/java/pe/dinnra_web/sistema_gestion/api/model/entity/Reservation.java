@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import pe.dinnra_web.sistema_gestion.api.model.enums.ReservationStatus;
 
@@ -19,7 +20,7 @@ import java.time.LocalDateTime;
                 @Index(name = "idx_id_room", columnList = "id_room")
         }
 )
-@EntityListeners(EnableJpaAuditing.class)
+@EntityListeners(AuditingEntityListener.class)
 public class Reservation {
 
     @Id

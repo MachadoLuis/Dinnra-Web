@@ -38,10 +38,6 @@
                             <td class="cell-table" style="padding: 0.75rem 0 0.75rem 0" th:text="${employee.email}"></td>
                             <td class="cell-status">
                                 <span th:class="${employee.active} ? 'badge bg-success' : 'badge bg-secondary'" th:text="${employee.active} ? 'Activo' : 'No activo'"></span>
-                                <!--
-                                <span th:if="${employee.active}" class="badge bg-success">Activo</span>
-                                <span th:if="${not employee.active}" class="badge bg-secondary">No activo</span>
-                                -->
                             </td>
                             <td class="action-buttons-container">
                                 <button class="btn btn-sm btn-outline-primary me-2 btnEdit"  th:attr="edit-idEmployee=${employee.idEmployee}">

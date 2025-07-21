@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pe.dinnra_web.sistema_gestion.api.model.dto.response.EmployeeResponse;
 import pe.dinnra_web.sistema_gestion.api.model.dto.response.PositionResponse;
+import pe.dinnra_web.sistema_gestion.api.model.dto.response.RoomResponse;
 import pe.dinnra_web.sistema_gestion.api.service.impl.EmployeeServiceImpl;
 import pe.dinnra_web.sistema_gestion.api.service.impl.PositionServiceImpl;
+import pe.dinnra_web.sistema_gestion.api.service.impl.RoomServiceImpl;
 
 import java.util.List;
 
@@ -23,6 +25,9 @@ public class AdminWebController {
 
     @Autowired
     private PositionServiceImpl positionService;
+
+    @Autowired
+    private RoomServiceImpl roomService;
 
     @GetMapping("/dash_admin")
     public String da_admin(){
@@ -38,7 +43,7 @@ public class AdminWebController {
         List<PositionResponse> positions = positionService.findAllEmployedPositions();
         model.addAttribute("employees", employees );
         model.addAttribute("positions", positions);
-        return "admin/empleados";
+        return "admin/employee";
     }
 
     @GetMapping("/position")
@@ -46,6 +51,13 @@ public class AdminWebController {
         List<PositionResponse> positions = positionService.findAll();
         model.addAttribute("positions", positions);
         return "admin/position";
+    }
+
+    @GetMapping("/room")
+    public String room(Model model){
+        List<RoomResponse> rooms = roomService.findAll();
+        model.addAttribute("rooms", rooms);
+        return "admin/room";
     }
 
     @GetMapping("/crea_habitacion")

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitación de Hotel</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .main-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 72px); /* Resta la altura del header */
+            padding: 2rem 0;
+            width: 100%;
+        }
+        .room-card-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 0 15px;
+        }
+        .room-card {
+            width: 100%;
+            max-width: 1200px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .room-img {
+            width: 450px;
+            height: 100%;
+            object-fit: cover;
+        }
+        .amenities-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .amenities-list li {
+            display: inline-block;
+            margin-right: 15px;
+            margin-bottom: 10px;
+        }
+        .card-body {
+            padding: 2rem;
+        }
+        .card-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+        }
+        .card-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .price-section h4 {
+            font-size: 1.8rem;
+        }
+        .btn-lg {
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+<header class="container-fluid border-bottom py-2">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <!-- Enlace a la página principal -->
+            <a th:href="@{/public/index}" class="text-decoration-none">
+                <h2 class="mb-0 text-primary">Dinnra</h2>
+            </a>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <button class="btn btn-outline-primary btn-sm">Favoritos</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalClsSession">
+                Cerrar Sesion
+            </button>
+            <button class="btn btn-light btn-sm border"><i class="bi bi-list"></i> Menú</button>
+        </div>
+    </div>
+</header>
+
+<main class="main-content">
+    <div class="room-card-container">
+        <div class="card room-card flex-md-row" id="roomInfo" th:attr="id-reservation=${room.idRoom}">
+            <!-- Imagen de la habitación (lado izquierdo) - Ampliada -->
+            <div class="col-lg-6 p-0">
+                <img th:src="${room.roomImg}" class="room-img card-img-left" alt="Habitación de hotel">
+            </div>
+
+            <!-- Contenido de la tarjeta (lado derecho) - Ampliado -->
+            <div class="col-lg-6">
+                <div class="card-body d-flex flex-column h-100">
+                    <!-- Nombre y descripción ampliados -->
+                    <h4 class="card-title" th:text="${room.name}">Habitación Deluxe</h4>
+                    <p class="card-text mb-4" th:text="${room.description}"></p>
+
+                    <!-- Características en línea -->
+                    <div class="mb-4">
+                            <span class="badge bg-primary me-3 p-2">
+                                <i class="fas fa-user-friends me-1"></i>
+                                <span th:text="${room.capacity + ' personas'}">2 personas</span>
+                            </span>
+                    </div>
+
+                    <!-- Amenities como lista horizontal ampliada -->
+                    <div class="mb-4">
+                        <h5 class="mb-3">Comodidades:</h5>
+                        <ul class="amenities-list">
+                            <li th:each="amenity : ${room.amenities.split(',')}">
+                                    <span class="badge bg-light text-dark p-2">
+                                        <i class="fas fa-check me-1"></i>
+                                        <span th:text="${amenity}">Wifi</span>
+                                    </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Precio y botón en la parte inferior ampliados -->
+                    <div class="mt-auto d-flex justify-content-between align-items-center pt-3">
+                        <div class="price-section" id="reservationPrice" th:attr="reservation-price=${room.pricePerNight}">
+                            <h4 class="text-primary mb-0" th:text="${'$' + room.pricePerNight}">$120</h4>
+                            <small class="text-muted">por noche</small>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#reservationModal">
+                            <i class="fas fa-calendar-check me-2"></i>Reservar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Modal de Reserva -->
+<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reservationModalLabel">Seleccione Fecha y Hora</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- Columna izquierda - Calendario -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Fecha de Check-in</label>
+                                <input type="date" class="form-control" id="checkinDate">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Fecha de Check-out</label>
+                                <input type="date" class="form-control" id="checkoutDate">
+                            </div>
+                            <div id="calendar"></div>
+                        </div>
+
+                        <!-- Columna derecha - Horas -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Hora de Check-in</label>
+                                <select class="form-select" id="checkinTime">
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Hora de Check-out</label>
+                                <select class="form-select" id="checkoutTime">
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="12:00">12:00</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Sección de Precios (ocupa todo el ancho debajo de las dos columnas) -->
+                        <div class="col-12 mt-4">
+                            <div class="card bg-light p-4">
+                                <h5 class="mb-4 text-center">Detalles del Costo</h5>
+                                <div class="row justify-content-center"> <!-- Added justify-content-center here -->
+                                    <div class="col-md-8"> <!-- Changed from col-md-8 to col-md-10 and added mx-auto -->
+                                        <div class="d-flex justify-content-between mb-3">
+                                            <span class="fw-medium">Precio base por noche:</span>
+                                            <span th:text="${'$' + room.pricePerNight}">$150.00</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3">
+                                            <span class="fw-medium">Noches de estadía:</span>
+                                            <span id="nightsCount">0</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between fw-bold fs-5 mt-2">
+                                            <span>Total a pagar:</span>
+                                            <span id="totalPrice">$0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="confirmReservation">Confirmar Reserva</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="warningLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-warning-subtle">
+            <div class="modal-header">
+                <h5 class="modal-title" id="warningLabel">Advertencia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                ¡Este es un mensaje de advertencia importante!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal de Confirmación -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center p-5">
+                <div class="mb-4">
+                    <i class="fas fa-check-circle text-success" style="font-size: 5rem;"></i>
+                </div>
+                <h3 class="mb-3">¡Reservación completada!</h3>
+                <p class="text-muted">Su reserva ha sido confirmada exitosamente</p>
+                <button type="button" class="btn btn-primary mt-3 px-4" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/script/scriptReservation.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

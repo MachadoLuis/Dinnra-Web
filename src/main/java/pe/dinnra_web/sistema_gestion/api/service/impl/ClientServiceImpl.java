@@ -30,6 +30,11 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Client findByIdEntity(Long idClient) {
+        return clientRepository.findByIdClient(idClient);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public ClientDetailResponse findById (Long idClient) {
         return clientRepository.findById(idClient)

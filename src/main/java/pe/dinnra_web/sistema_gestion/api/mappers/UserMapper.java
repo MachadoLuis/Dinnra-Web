@@ -5,6 +5,8 @@ import org.mapstruct.Mapping;
 import pe.dinnra_web.sistema_gestion.api.model.dto.request.registrationWebRequest.UserClientRequest;
 import pe.dinnra_web.sistema_gestion.api.model.dto.request.registrationWebRequest.UserEmployeeRequest;
 import pe.dinnra_web.sistema_gestion.api.model.dto.request.registrationWebRequest.UserEmployeeWebRequest;
+import pe.dinnra_web.sistema_gestion.api.model.dto.response.registrationWebResponse.UserClientResponse;
+import pe.dinnra_web.sistema_gestion.api.model.dto.response.registrationWebResponse.UserEmployeeResponse;
 import pe.dinnra_web.sistema_gestion.api.model.dto.response.registrationWebResponse.UserResponse;
 import pe.dinnra_web.sistema_gestion.api.model.entity.User;
 import pe.dinnra_web.sistema_gestion.api.util.UserInfo;
@@ -27,6 +29,16 @@ public interface UserMapper {
     @Mapping(target = "active", source = "active")
     @Mapping(target = "createdAt", ignore = true)
     User employeeToUser(UserEmployeeRequest request);
+
+    @Mapping(target = "idUser", ignore = true)
+    @Mapping(target = "userType", source = "userType")
+    @Mapping(target = "active", source = "active")
+    UserEmployeeResponse userToUserEmployee(User user);
+
+    @Mapping(target = "idUser", ignore = true)
+    @Mapping(target = "userType", source = "userType")
+    @Mapping(target = "active", source = "active")
+    UserClientResponse userToUserClient (User user);
 
     @Mapping(target = "idUser", ignore = true)
     @Mapping(target = "idClient", expression = "java(null)")

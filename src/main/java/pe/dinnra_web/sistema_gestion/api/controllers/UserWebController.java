@@ -5,8 +5,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pe.dinnra_web.sistema_gestion.api.model.dto.response.RoomDetailResponse;
 import pe.dinnra_web.sistema_gestion.api.model.dto.response.RoomResponse;
 import pe.dinnra_web.sistema_gestion.api.service.impl.RoomServiceImpl;
 
@@ -31,9 +33,11 @@ public class UserWebController {
         return "usuario/libro_reclamaciones";
     }
 
-    @GetMapping("/usuario_mis_reservas")
-    public String mis_reservas(){
-        return "usuario/mis_reservas";
+    @GetMapping("/reservation/{idRoom}")
+    public String mis_reservas(Model model, @PathVariable Long idRoom){
+        RoomDetailResponse room = roomService.findById(idRoom);
+        model.addAttribute("room", room);
+        return "usuario/reservation";
     }
 
     @GetMapping("/usuario_mis_solicitudes_ayuda")
@@ -60,7 +64,7 @@ public class UserWebController {
     public String ver_habitaciones(Model model){
         List<RoomResponse> rooms = roomService.findAll();
         model.addAttribute("rooms", rooms);
-        return "usuario/habitaciones";
+        return "usuario/rooms";
     }
 }
 

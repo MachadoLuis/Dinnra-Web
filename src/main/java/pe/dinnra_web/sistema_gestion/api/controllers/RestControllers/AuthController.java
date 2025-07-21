@@ -20,6 +20,7 @@ import pe.dinnra_web.sistema_gestion.api.service.impl.AuthServiceImpl;
 import pe.dinnra_web.sistema_gestion.api.util.JwtUtil;
 
 import java.net.http.HttpRequest;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -43,7 +44,7 @@ public class AuthController {
 
 
     @PostMapping("/login-web")
-    public ResponseEntity</*Void*/ LoginResponse> loginWeb (@Valid @ModelAttribute LoginRequest loginRequest){
+    public ResponseEntity<LoginResponse> loginWeb (@Valid @ModelAttribute LoginRequest loginRequest){
         TokensResponse tokens= authService.authenticate(loginRequest.getUsername(), loginRequest.getPassword());
 
         return
@@ -52,12 +53,20 @@ public class AuthController {
     }
 
     @PostMapping("/refresh-token")
+    private ResponseEntity<TokensResponse> refreshToken (@RequestBody  Map<String, String> refreshToken){
+        return ResponseEntity.ok()
+                .body(authService.obtainTokens(refreshToken.get("refresh_token")));
+    }
+
+
+    /*
+    @PostMapping("/refresh-token")
     private ResponseEntity<TokensResponse> refreshToken (HttpServletRequest httpRequest){
         String authHeader = httpRequest.getHeader(HttpHeaders.AUTHORIZATION);
         String refreshToken = authHeader.substring(7);
         return ResponseEntity.ok()
                 .body(authService.obtainTokens(refreshToken));
-    }
+    }*/
 
     @GetMapping("/validate-auth")
     private ResponseEntity<?> validateAuthentication(Authentication authentication){
@@ -65,7 +74,7 @@ public class AuthController {
         if (authentication !=null){
             return ResponseEntity.ok().build();
         }
-        return ResponseEntity.status(HttpStatus.BAD_GATEWAY).build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 
     }
 

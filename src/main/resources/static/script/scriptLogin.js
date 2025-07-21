@@ -19,7 +19,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         const claimsPosition = responseJson.claims.position;
         fetch("/api/v1/auth/validate-auth", {
             method: "GET",
-            headers: {"Authorization": `Bearer ${localStorage.getItem("refreshToken")}`}
+            headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
         })
         .then(response => {
             if(!response.ok){
